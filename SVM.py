@@ -1,2 +1,3 @@
-import numpy as np
-from sklearn.svm import SVC
+import tensorflow as tf
+c = tf.constant("hello")
+s = tf.Session()
