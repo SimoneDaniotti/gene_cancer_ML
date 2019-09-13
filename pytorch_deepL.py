@@ -23,6 +23,10 @@ y = y.drop(y.columns[0], axis=1)
 
 print('Done.')
 
+from sklearn import preprocessing,utils
+# drop the first column which only contains strings
+min_max_scaler = preprocessing.MinMaxScaler()
+x = min_max_scaler.fit_transform(x)
 #####################
 #encoding y classes
 #####################
@@ -53,13 +57,17 @@ from sklearn.model_selection import train_test_split
 print('Splitting..')
 
 x_train, x_val, y_train, y_val \
-    = train_test_split(x, y, test_size=0.15, random_state=42, stratify=y, shuffle=True)
+    = train_test_split(x, y, test_size=0.2, random_state=42 ,stratify=y, shuffle=True)
+   #
 #For example, if variable y is a binary categorical variable with values 0 and 1 and there are 25% of zeros 
 #and 75% of ones, stratify=y will make sure that your random split has 25% of 0's and 75% of 1's
 
 print('Done.')
 
+y_integers = np.argmax(y, axis=1)
+class_weights = utils.compute_class_weight('balanced', np.unique(y_integers), y_integers)
 
+class_weights =torch.Tensor(class_weights)
 ##################################
 #Data Preparing for torch
 ##################################
@@ -92,8 +100,8 @@ val_dl = DataLoader(val_ds, batch_size=bs)
 ##################################
 from torch import optim
 
-criterion = nn.BCEWithLogitsLoss()
-epochs=30
+criterion = nn.BCEWithLogitsLoss(weight=class_weights)
+epochs=300
 lr=0.01
 
 class Net(nn.Module):
@@ -122,6 +130,7 @@ class Net(nn.Module):
 def get_model():
     model = Net(len(train_ds[1][0]),50,25,10,5,p=0.2)
     return model, optim.Adam(model.parameters(),betas=(0.9, 0.999), eps=1e-08,  lr=lr)
+    #return model, optim.SGD(model.parameters(),  lr=lr,weight_decay=1e-6, momentum=0.9, nesterov=True)
 
 model, opt = get_model()
 print(model)
