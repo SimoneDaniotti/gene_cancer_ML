@@ -129,8 +129,8 @@ class Net(nn.Module):
 
 def get_model():
     model = Net(len(train_ds[1][0]),50,25,10,5,p=0.2)
-    return model, optim.Adam(model.parameters(),betas=(0.9, 0.999), eps=1e-08,  lr=lr)
-    #return model, optim.SGD(model.parameters(),  lr=lr,weight_decay=1e-6, momentum=0.9, nesterov=True)
+    #return model, optim.Adam(model.parameters(),betas=(0.9, 0.999), eps=1e-08,  lr=lr)
+    return model, optim.SGD(model.parameters(),  lr=lr,weight_decay=1e-6, momentum=0.9, nesterov=True)
 
 model, opt = get_model()
 print(model)
