@@ -12,8 +12,8 @@ import torch.nn.functional as F
 ###########################################
 print('Dataset loading...')
 
-x = pd.read_csv("data.csv")
-y = pd.read_csv("labels.csv")
+x = pd.read_csv("../data.csv")
+y = pd.read_csv("../labels.csv")
 
 # drop the first column which only contains strings
 x = x.drop(x.columns[x.columns.str.contains('unnamed', case=False)], axis=1)
