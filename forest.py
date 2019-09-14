@@ -3,12 +3,37 @@ import matplotlib.pyplot as plt
 import os.path
 import numpy as np
 
+from sklearn import linear_model
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score,hamming_loss,confusion_matrix
+from sklearn.model_selection import cross_val_predict,cross_val_score
 
+from matplotlib.pyplot import figure
+
+import seaborn as sns
+
+from time import time
+
+
+
+
+
+
+print('Setting..')
+start = time()
+
+################################
 # load the dataset
+################################
+
 x_train = pd.read_csv("x_train.csv")
 y_train = pd.read_csv("y_train.csv")
 x_test = pd.read_csv("x_test.csv")
 y_test = pd.read_csv("y_test.csv")
+
+################################
+# Cleaning
+################################
 
 # drop the first column which only contains strings
 x_train = x_train.drop(x_train.columns[x_train.columns.str.contains('unnamed', case=False)], axis=1)
@@ -18,8 +43,13 @@ x_test = x_test.drop(x_test.columns[x_test.columns.str.contains('unnamed', case=
 y_train = y_train.drop(y_train.columns[0], axis=1)
 y_test = y_test.drop(y_test.columns[0], axis=1)
 
-from sklearn.ensemble import RandomForestClassifier
+print('ready.')
 
+print("Preparing datasets took %.2f seconds." % (time() - start))
+
+'''###########################
+#model_1 definition and evaluation
+###########################
 # Define the model. Set random_state to 1
 rf_model = RandomForestClassifier(n_estimators=2,random_state=42)
 
@@ -27,27 +57,19 @@ rf_model = RandomForestClassifier(n_estimators=2,random_state=42)
 rf_model.fit(x_train,y_train)
 y_pred=rf_model.predict(x_test)
 
-from sklearn.metrics import accuracy_score
+
 rf_val_acc=accuracy_score(y_test, y_pred)
 
 print("Accuracy for Random Forest Model: {}".format(rf_val_acc))
 
-from sklearn.metrics import hamming_loss
+
 rf_val_hamming=hamming_loss(y_test, y_pred)
 
-print("Hamming Loss for Random Forest Model: {}".format(rf_val_hamming))
+print("Hamming Loss for Random Forest Model: {}".format(rf_val_hamming))'''
 
-########################################################################################
+'''########################################################################################
 #                    Performance Evaluation : errors vs # estimators
 ########################################################################################
-import matplotlib.pyplot as plt
-from matplotlib.pyplot import figure
-
-from sklearn.metrics import hamming_loss
-
-from sklearn import linear_model
-
-
 
 figure(num=None, figsize=(6,6), facecolor='w', edgecolor='k')
 
@@ -82,8 +104,7 @@ plt.show()
 ########################################################################################
 #                    Performance Evaluation: accuracy
 ########################################################################################
-import matplotlib.pyplot as plt
-from matplotlib.pyplot import figure
+
 
 
 figure(num=None, figsize=(6,6), facecolor='w', edgecolor='k')
@@ -109,7 +130,7 @@ plt.plot(n_features_rf, train_errors, '^-', color='green',label='train_errors')
 plt.legend()
 
 plt.axis([0, 50, 0.5, 1])
-plt.show()
+plt.show()'''
 
 ########################################################################################
 #                    Confusion Matrix
@@ -124,7 +145,7 @@ especially when you are dealing with skewed datasets (i.e., when some classes ar
 rf = RandomForestClassifier(random_state=42,n_estimators=2)
 
 
-from sklearn.model_selection import cross_val_predict
+
 
 y_train_pred = cross_val_predict(rf, x_train, y_train, cv=3)
 
@@ -134,10 +155,6 @@ This means that you get a clean prediction for each instance in the training set
 (“clean” meaning that the prediction is made by a model that never saw the data during training).'''
 
 
-import seaborn as sns
-import matplotlib.pyplot as plt     
-
-from sklearn.metrics import confusion_matrix
 
 cm =confusion_matrix(y_train, y_train_pred)
 
@@ -184,7 +201,16 @@ rf2=RandomForestClassifier(criterion='gini',
                             bootstrap=True,
                         random_state=42)
 
-y_train_pred = cross_val_predict(rf2, x_train, y_train, cv=3)
+######
+#Validation scores
+######
+score = cross_val_score(rf2, x_train, y_train,
+                              cv=5,
+                              scoring='accuracy')
+
+print("Cv score for forest_2:\n", score)
+
+y_train_pred = cross_val_predict(rf2, x_train, y_train, cv=5)
 
 cm =confusion_matrix(y_train, y_train_pred)
 
@@ -202,7 +228,17 @@ ax.set_xlim(0,5)
 ax.set_ylim(5,0)
 plt.show()
 
+
+######
+#Test scores
+######
+start = time()
+
+
 rf2.fit(x_train,y_train)
+
+print("Training model_2 took %.2f seconds." % (time() - start))
+
 y_pred= rf2.predict(x_test)
 
 cm =confusion_matrix(y_test, y_pred)
@@ -214,19 +250,17 @@ sns.heatmap(cm, annot=True, ax = ax,cmap='Greens') #annot=True to annotate cells
 # labels, title and ticks
 ax.set_xlabel('Predicted labels')
 ax.set_ylabel('True labels')
-ax.set_title('Confusion Matrix')
+ax.set_title('Confusion Matrix for Random Forest Classifier')
 ax.xaxis.set_ticklabels(class_names)
 ax.yaxis.set_ticklabels(class_names)
 ax.set_xlim(0,5)
 ax.set_ylim(5,0)
 plt.show()
 
-from sklearn.metrics import accuracy_score
 rf_val_acc=accuracy_score(y_test, y_pred)
 
 print("Accuracy for Random Forest Model: {}".format(rf_val_acc))
 
-from sklearn.metrics import hamming_loss
 rf_val_hamming=hamming_loss(y_test, y_pred)
 
 print("Hamming Loss for Random Forest Model: {}".format(rf_val_hamming))
