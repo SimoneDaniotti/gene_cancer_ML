@@ -8,8 +8,8 @@ from matplotlib.pyplot import figure
 
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import hamming_loss, accuracy_score, confusion_matrix
-from sklearn import linear_model
-from sklearn.model_selection import cross_val_predict,cross_val_score
+from sklearn import linear_model,decomposition,preprocessing
+from sklearn.model_selection import cross_val_predict,cross_val_score,train_test_split
 
 import seaborn as sns
 from time import time
@@ -41,9 +41,9 @@ print('Done.')
 
 print('Reducing and splitting..')
 
-#PCA on x
+'''#PCA on x
 pca = decomposition.PCA(n_components=700)
-x = pca.fit_transform(x)
+x = pca.fit_transform(x)'''
 
 # normalization
 x = preprocessing.normalize(x)
@@ -54,7 +54,7 @@ Y1 = y.apply(le.fit_transform)
 y = le.fit_transform(Y1) # complete label encoded array
 
 #splitting
-x_train, x_val, y_train, y_val \
+x_train, x_test, y_train, y_test \
     = train_test_split(x, y, test_size=0.15, random_state=42 , shuffle=True)
    #
 #For example, if variable y is a binary categorical variable with values 0 and 1 and there are 25% of zeros 
@@ -69,11 +69,11 @@ print("Preparing datasets took %.2f seconds." % (time() - start))
 
 
 
-###########################
+'''###########################
 #model_1 definition and evaluation
 ###########################
 
-tree1 = DecisionTreeClassifier(random_state=42,max_depth=3)
+tree1 = DecisionTreeClassifier(random_state=42)
 
 start = time()
 tree1.fit(x_train, y_train)
@@ -89,11 +89,12 @@ hamming1=hamming_loss(y_test, y_pred)
 
 print("Hamming Loss for model_1: {}".format(hamming1))
 
-'''accuracy is generally not the preferred performance measure for classifiers, 
-especially when you are dealing with skewed datasets (i.e., when some classes are much more frequent than others).'''
+#accuracy is generally not the preferred performance measure for classifiers, 
+#especially when you are dealing with skewed datasets (i.e., when some classes are much more frequent than others).
 cm =confusion_matrix(y_test, y_pred)
 
 print(cm)
+class_names = ['BRCA', 'COAD', 'KIRC', 'LUAD', 'PRAD']
 
 ax= plt.subplot()
 sns.heatmap(cm, annot=True, ax = ax,cmap='Greens') #annot=True to annotate cells
@@ -111,38 +112,40 @@ plt.show()
 
 
 
-
+'''
 ##################################################################
 #model_2 definition and evaluation: k-fold cross val. and confusion matrix
 ##################################################################
 
 #parameters found with scripts for hyperparam. evaluation
 
-tree2 = DecisionTreeClassifier(class_weight=None,
+tree2 = DecisionTreeClassifier(
                                               criterion='gini', max_depth=5,
-                                              max_leaf_nodes=10,
-                                              min_samples_leaf=1,
-                                              min_samples_split=10,
+                                              max_leaf_nodes=7,
                                               random_state=42)
+
+#accuracy=0.99
+
 ######
 #Validation scores
 ######
 score = cross_val_score(tree2, x_train, y_train,
-                              cv=5,
+                              cv=10,
                               scoring='accuracy')
 
 print("Cv score for model_2:\n", score)
 
-y_train_pred = cross_val_predict(tree2, x_train, y_train, cv=3)
+'''y_train_pred = cross_val_predict(tree2, x_train, y_train, cv=3)
 
-'''Just like the cross_val_score() function, cross_val_predict() performs K-fold cross-validation, 
-but instead of returning the evaluation scores, it returns the predictions made on each test fold. 
-This means that you get a clean prediction for each instance in the training set 
-(“clean” meaning that the prediction is made by a model that never saw the data during training).'''
+#Just like the cross_val_score() function, cross_val_predict() performs K-fold cross-validation, 
+#but instead of returning the evaluation scores, it returns the predictions made on each test fold. 
+#This means that you get a clean prediction for each instance in the training set 
+#(“clean” meaning that the prediction is made by a model that never saw the data during training).
 
 cm =confusion_matrix(y_train, y_train_pred)
 
 print(cm)
+class_names = ['BRCA', 'COAD', 'KIRC', 'LUAD', 'PRAD']
 
 ax= plt.subplot()
 sns.heatmap(cm, annot=True, ax = ax,cmap='Greens') #annot=True to annotate cells
@@ -155,7 +158,7 @@ ax.yaxis.set_ticklabels(class_names)
 ax.set_xlim(0,5)
 ax.set_ylim(5,0)
 
-plt.show()
+plt.show()'''
 
 
 ######
@@ -170,6 +173,7 @@ y_pred= tree2.predict(x_test)
 cm =confusion_matrix(y_test, y_pred)
 
 print(cm)
+class_names = ['BRCA', 'COAD', 'KIRC', 'LUAD', 'PRAD']
 
 ax= plt.subplot()
 sns.heatmap(cm, annot=True, ax = ax,cmap='Greens') #annot=True to annotate cells
@@ -186,19 +190,19 @@ plt.show()
 
 tree_val_acc=accuracy_score(y_test, y_pred)
 
-print("Accuracy for Random Forest Model: {}".format(tree_val_acc))
+print("Accuracy for best Tree Classifier Model: {}".format(tree_val_acc))
 
 
 tree_val_hamming=hamming_loss(y_test, y_pred)
 
-print("Hamming Loss for Random Forest Model: {}".format(tree_val_hamming))
+print("Hamming Loss for best Tree Classifier Model: {}".format(tree_val_hamming))
 
 
 #########
 #Printing tree shape
 #########
 
-from sklearn.tree import export_graphviz
+'''from sklearn.tree import export_graphviz
 export_graphviz(
             tree2,
             out_file="tree2.dot",
@@ -209,7 +213,7 @@ export_graphviz(
         )
 # Convert to png
 from subprocess import call
-call(['dot', '-Tpng', 'tree2.dot', '-o', 'tree2.png', '-Gdpi=600'])
+call(['dot', '-Tpng', 'tree2.dot', '-o', 'tree2.png', '-Gdpi=600'])'''
 
 #####################################################################
 

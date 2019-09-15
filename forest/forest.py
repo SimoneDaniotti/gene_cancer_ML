@@ -41,9 +41,9 @@ print('Done.')
 ##########################################
 
 print('Reducing and splitting..')
-#PCA on x
+'''#PCA on x
 pca = decomposition.PCA(n_components=700)
-x = pca.fit_transform(x)
+x = pca.fit_transform(x)'''
 
 # label encoding
 le = preprocessing.LabelEncoder()
@@ -55,7 +55,7 @@ x = preprocessing.normalize(x)
 
 #splitting
 x_train, x_test, y_train, y_test \
-    = train_test_split(x, y, test_size=0.2, random_state=42 ,stratify=y, shuffle=True)
+    = train_test_split(x, y, test_size=0.15, random_state=42 , shuffle=True)
    #
 #For example, if variable y is a binary categorical variable with values 0 and 1 and there are 25% of zeros 
 #and 75% of ones, stratify=y will make sure that your random split has 25% of 0's and 75% of 1's
@@ -158,7 +158,7 @@ plt.show()'''
 '''accuracy is generally not the preferred performance measure for classifiers, 
 especially when you are dealing with skewed datasets (i.e., when some classes are much more frequent than others).'''
 
-# Define the model. Set random_state to 1
+'''# Define the model. Set random_state to 1
 rf = RandomForestClassifier(random_state=42,n_estimators=2)
 
 
@@ -166,10 +166,10 @@ rf = RandomForestClassifier(random_state=42,n_estimators=2)
 
 y_train_pred = cross_val_predict(rf, x_train, y_train, cv=3)
 
-'''Just like the cross_val_score() function, cross_val_predict() performs K-fold cross-validation, 
-but instead of returning the evaluation scores, it returns the predic‐ tions made on each test fold. 
-This means that you get a clean prediction for each instance in the training set 
-(“clean” meaning that the prediction is made by a model that never saw the data during training).'''
+#Just like the cross_val_score() function, cross_val_predict() performs K-fold cross-validation, 
+#but instead of returning the evaluation scores, it returns the predic‐ tions made on each test fold. 
+#This means that you get a clean prediction for each instance in the training set 
+#(“clean” meaning that the prediction is made by a model that never saw the data during training).
 
 
 
@@ -207,18 +207,21 @@ ax.yaxis.set_ticklabels(class_names)
 ax.set_xlim(0,5)
 ax.set_ylim(5,0)
 plt.show()
-
+'''
 ########################################################################################
 #                   Model with hyperp. found by gridsearch
 ########################################################################################
 
-rf2=RandomForestClassifier(criterion='gini', 
-                           max_depth=5,
-                        max_leaf_nodes=5,
+rf2=RandomForestClassifier(criterion='entropy', 
+                  n_estimators=60,
+                         min_samples_split=2  ,
+                         min_samples_leaf=1,
+                        max_leaf_nodes=50,
                             bootstrap=True,
                         random_state=42)
+#acc=1.0
 
-######
+'''######
 #Validation scores
 ######
 score = cross_val_score(rf2, x_train, y_train,
@@ -243,7 +246,7 @@ ax.xaxis.set_ticklabels(class_names)
 ax.yaxis.set_ticklabels(class_names)
 ax.set_xlim(0,5)
 ax.set_ylim(5,0)
-plt.show()
+plt.show()'''
 
 
 ######

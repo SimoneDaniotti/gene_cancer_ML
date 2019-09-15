@@ -7,8 +7,8 @@ from matplotlib.pyplot import figure
 
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.metrics import hamming_loss, accuracy_score, confusion_matrix
-from sklearn import linear_model
-from sklearn.model_selection import cross_val_predict,cross_val_score,GridSearchCV
+from sklearn import linear_model,decomposition,preprocessing
+from sklearn.model_selection import cross_val_predict,cross_val_score,GridSearchCV,train_test_split
 
 import seaborn as sns
 
@@ -37,9 +37,9 @@ print('Done.')
 
 print('Reducing and splitting..')
 
-#PCA on x
+'''#PCA on x
 pca = decomposition.PCA(n_components=700)
-x = pca.fit_transform(x)
+x = pca.fit_transform(x)'''
 
 # normalization
 x = preprocessing.normalize(x)
@@ -67,22 +67,26 @@ print('ready.')
 tree3 = DecisionTreeClassifier(random_state=42)
 
 tree_params = {
-    'criterion': ['gini', 'entropy'],
-    'max_depth': [4,5,6,7,8,20,30]
-    'min_samples_leaf':[1, 5, 10, 20, 50, 100]
+    'criterion': ['gini','entropy'],
+    'max_depth': [4,5,6,7,20,50,100],
+    'max_leaf_nodes':[5,6,7,9,10,12,15,50,100],
 }
 start=time()
-grid_search = GridSearchCV(estimator=tree3, param_grid=tree_params, scoring='accuracy', cv=5, n_jobs=-1)
+#The parameters of the estimator used to apply these methods 
+#are optimized by cross-validated grid-search over a parameter grid.
+grid_search = GridSearchCV(estimator=tree3, param_grid=tree_params, scoring='accuracy', cv=10, n_jobs=-1)
 grid_search.fit(x_train, y_train)
 accuracy = grid_search.best_score_
 best_params = grid_search.best_params_
 
-print("Grid search took:", time() - start, '\n')
+print("Grid search took:", time() - start, 'seconds \n')
 
-print("Best params GridS for random forest:", grid_search.best_params_, '\n')
+print("Best params GridS for tree:", grid_search.best_params_, '\n')
 print("Best accuracy:", grid_search.best_score_, '\n')
 
+#best: 0.9808823529411764 
 
+#{'criterion': 'gini', 'max_depth': 5, 'max_leaf_nodes': 7, 'min_samples_leaf': 1, 'min_samples_split': 2} 
 '''score = cross_val_score(tree3, x_train, y_train,
                               cv=5,
                               scoring='accuracy')

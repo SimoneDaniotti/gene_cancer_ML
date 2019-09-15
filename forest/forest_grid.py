@@ -77,6 +77,7 @@ rf_params = {
     'criterion': ['gini', 'entropy']
 }
 
+
 start=time()
 
 grid_search = GridSearchCV(estimator=rf, param_grid=rf_params, scoring='accuracy', cv=5, n_jobs=-1)
