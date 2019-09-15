@@ -5,7 +5,17 @@ import os.path
 
 import torch
 import torch.nn as nn
+from torch import optim
 import torch.nn.functional as F
+from torch.utils.data import Dataset,TensorDataset,DataLoader
+
+from sklearn import preprocessing,utils,metrics
+from sklearn.preprocessing import LabelEncoder,OneHotEncoder
+from sklearn import decomposition
+from sklearn.model_selection import train_test_split
+
+import seaborn as sns
+
 
 ###########################################
 # load the dataset and drop useless columns
@@ -16,21 +26,22 @@ x = pd.read_csv("../data.csv")
 y = pd.read_csv("../labels.csv")
 
 # drop the first column which only contains strings
-x = x.drop(x.columns[x.columns.str.contains('unnamed', case=False)], axis=1)
-
+x = x.drop(x.columns[0], axis=1)
 #drop first column, is only index
 y = y.drop(y.columns[0], axis=1)
 
 print('Done.')
 
-from sklearn import preprocessing,utils
-# drop the first column which only contains strings
+
+# scaling x between 0 and 1
+
 min_max_scaler = preprocessing.MinMaxScaler()
 x = min_max_scaler.fit_transform(x)
+
 #####################
 #encoding y classes
 #####################
-from sklearn.preprocessing import LabelEncoder,OneHotEncoder
+
 
 print('Encoding...')
 
@@ -44,11 +55,10 @@ print('Done.')
 #####################
 #PCA
 #####################
-from sklearn import decomposition
+
 pca = decomposition.PCA(n_components=700)
 x = pca.fit_transform(x)
 
-from sklearn.model_selection import train_test_split
 
 ##########################################
 # split data into training and testing set
@@ -81,16 +91,13 @@ y_train=y_train.float()
 ##################################
 #TensorDataset and DataLoader
 ##################################
-from torch.utils.data import Dataset
 
 bs=16
 
-from torch.utils.data import TensorDataset
 
 train_ds = TensorDataset(x_train, y_train)
 val_ds = TensorDataset(x_val, y_val)
 
-from torch.utils.data import DataLoader
 train_dl = DataLoader(train_ds, batch_size=bs, shuffle=True) #shuffle -> Shuffling the training data is important
 #to prevent correlation between batches and overfitting
 val_dl = DataLoader(val_ds, batch_size=bs) 
@@ -98,7 +105,6 @@ val_dl = DataLoader(val_ds, batch_size=bs)
 ##################################
 #Model defining
 ##################################
-from torch import optim
 
 criterion = nn.BCEWithLogitsLoss(weight=class_weights)
 epochs=300
@@ -173,8 +179,6 @@ for epoch in range(epochs):
 #Confusion Matrix
 ##################################
 
-from sklearn import metrics
-import seaborn as sns
 
 with torch.no_grad():
     predict = model(x_val)
