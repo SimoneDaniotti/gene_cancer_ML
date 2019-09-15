@@ -16,33 +16,54 @@ from time import time
 
 
 
-print('Setting..')
+
 start = time()
 
-################################
-# load the dataset
-################################
-x_train = pd.read_csv("../x_train.csv")
-y_train = pd.read_csv("../y_train.csv")
-x_test = pd.read_csv("../x_test.csv")
-y_test = pd.read_csv("../y_test.csv")
+###########################################
+# load the dataset and drop useless columns
+###########################################
+print('Dataset loading...')
 
-################################
-# Cleaning
-################################
+x = pd.read_csv("../data.csv")
+y = pd.read_csv("../labels.csv")
+
 # drop the first column which only contains strings
-x_train = x_train.drop(x_train.columns[x_train.columns.str.contains('unnamed', case=False)], axis=1)
-x_test = x_test.drop(x_test.columns[x_test.columns.str.contains('unnamed', case=False)], axis=1)
-
+x = x.drop(x.columns[0], axis=1)
 #drop first column, is only index
-y_train = y_train.drop(y_train.columns[0], axis=1)
-y_test = y_test.drop(y_test.columns[0], axis=1)
+y = y.drop(y.columns[0], axis=1)
+
+print('Done.')
+
+
+##########################################
+# split data into training and testing set
+##########################################
+
+print('Reducing and splitting..')
+
+#PCA on x
+pca = decomposition.PCA(n_components=700)
+x = pca.fit_transform(x)
+
+# normalization
+x = preprocessing.normalize(x)
+
+# label encoding
+le = preprocessing.LabelEncoder()
+Y1 = y.apply(le.fit_transform)
+y = le.fit_transform(Y1) # complete label encoded array
+
+#splitting
+x_train, x_val, y_train, y_val \
+    = train_test_split(x, y, test_size=0.15, random_state=42 , shuffle=True)
+   #
+#For example, if variable y is a binary categorical variable with values 0 and 1 and there are 25% of zeros 
+#and 75% of ones, stratify=y will make sure that your random split has 25% of 0's and 75% of 1's
+# feature selection through PCA
 
 print('ready.')
 print("Preparing datasets took %.2f seconds." % (time() - start))
 
-#class names for plotting confusion matrix
-class_names = y_train['Class'].unique()
 
 
 

@@ -45,6 +45,11 @@ print('Reducing and splitting..')
 pca = decomposition.PCA(n_components=700)
 x = pca.fit_transform(x)
 
+# label encoding
+le = preprocessing.LabelEncoder()
+Y1 = y.apply(le.fit_transform)
+y = le.fit_transform(Y1) # complete label encoded array
+
 # normalization
 x = preprocessing.normalize(x)
 

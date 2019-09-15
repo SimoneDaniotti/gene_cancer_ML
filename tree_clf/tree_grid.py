@@ -44,6 +44,11 @@ x = pca.fit_transform(x)
 # normalization
 x = preprocessing.normalize(x)
 
+# label encoding
+le = preprocessing.LabelEncoder()
+Y1 = y.apply(le.fit_transform)
+y = le.fit_transform(Y1) # complete label encoded array
+
 #splitting
 x_train, x_val, y_train, y_val \
     = train_test_split(x, y, test_size=0.15, random_state=42 , shuffle=True)
