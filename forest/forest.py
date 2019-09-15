@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 import os.path
 import numpy as np
 
-from sklearn import linear_model
+from sklearn import linear_model,decomposition,preprocessing
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score,hamming_loss,confusion_matrix
-from sklearn.model_selection import cross_val_predict,cross_val_score
+from sklearn.model_selection import cross_val_predict,cross_val_score,train_test_split
 
 from matplotlib.pyplot import figure
 
@@ -29,8 +29,7 @@ x = pd.read_csv("../data.csv")
 y = pd.read_csv("../labels.csv")
 
 # drop the first column which only contains strings
-x = x.drop(x.columns[x.columns.str.contains('unnamed', case=False)], axis=1)
-
+x = x.drop(x.columns[0], axis=1)
 #drop first column, is only index
 y = y.drop(y.columns[0], axis=1)
 
@@ -50,7 +49,7 @@ x = pca.fit_transform(x)
 x = preprocessing.normalize(x)
 
 #splitting
-x_train, x_val, y_train, y_val \
+x_train, x_test, y_train, y_test \
     = train_test_split(x, y, test_size=0.2, random_state=42 ,stratify=y, shuffle=True)
    #
 #For example, if variable y is a binary categorical variable with values 0 and 1 and there are 25% of zeros 
@@ -150,7 +149,6 @@ plt.show()'''
 #                    Confusion Matrix
 ########################################################################################
 
-class_names = y_train['Class'].unique()
 
 '''accuracy is generally not the preferred performance measure for classifiers, 
 especially when you are dealing with skewed datasets (i.e., when some classes are much more frequent than others).'''
@@ -173,7 +171,7 @@ This means that you get a clean prediction for each instance in the training set
 cm =confusion_matrix(y_train, y_train_pred)
 
 print(cm)
-
+class_names = ['BRCA', 'COAD', 'KIRC', 'LUAD', 'PRAD']
 ax= plt.subplot()
 sns.heatmap(cm, annot=True, ax = ax,cmap='Greens') #annot=True to annotate cells
 # labels, title and ticks
@@ -192,7 +190,7 @@ y_pred= rf.predict(x_test)
 cm =confusion_matrix(y_test, y_pred)
 
 print(cm)
-
+class_names = ['BRCA', 'COAD', 'KIRC', 'LUAD', 'PRAD']
 ax= plt.subplot()
 sns.heatmap(cm, annot=True, ax = ax,cmap='Greens') #annot=True to annotate cells
 # labels, title and ticks
@@ -229,7 +227,7 @@ y_train_pred = cross_val_predict(rf2, x_train, y_train, cv=5)
 cm =confusion_matrix(y_train, y_train_pred)
 
 print(cm)
-
+class_names = ['BRCA', 'COAD', 'KIRC', 'LUAD', 'PRAD']
 ax= plt.subplot()
 sns.heatmap(cm, annot=True, ax = ax,cmap='Greens') #annot=True to annotate cells
 # labels, title and ticks
@@ -258,7 +256,7 @@ y_pred= rf2.predict(x_test)
 cm =confusion_matrix(y_test, y_pred)
 
 print(cm)
-
+class_names = ['BRCA', 'COAD', 'KIRC', 'LUAD', 'PRAD']
 ax= plt.subplot()
 sns.heatmap(cm, annot=True, ax = ax,cmap='Greens') #annot=True to annotate cells
 # labels, title and ticks

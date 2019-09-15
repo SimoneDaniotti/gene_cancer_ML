@@ -15,29 +15,45 @@ import seaborn as sns
 from time import time
 
 
-print('Setting..')
-################################
-# load the dataset
-################################
-x_train = pd.read_csv("../x_train.csv")
-y_train = pd.read_csv("../y_train.csv")
-x_test = pd.read_csv("../x_test.csv")
-y_test = pd.read_csv("../y_test.csv")
+###########################################
+# load the dataset and drop useless columns
+###########################################
+print('Dataset loading...')
 
-################################
-# Cleaning
-################################
+x = pd.read_csv("../data.csv")
+y = pd.read_csv("../labels.csv")
+
 # drop the first column which only contains strings
-x_train = x_train.drop(x_train.columns[x_train.columns.str.contains('unnamed', case=False)], axis=1)
-x_test = x_test.drop(x_test.columns[x_test.columns.str.contains('unnamed', case=False)], axis=1)
-
+x = x.drop(x.columns[0], axis=1)
 #drop first column, is only index
-y_train = y_train.drop(y_train.columns[0], axis=1)
-y_test = y_test.drop(y_test.columns[0], axis=1)
+y = y.drop(y.columns[0], axis=1)
+
+print('Done.')
+
+
+##########################################
+# split data into training and testing set
+##########################################
+
+print('Reducing and splitting..')
+
+#PCA on x
+pca = decomposition.PCA(n_components=700)
+x = pca.fit_transform(x)
+
+# normalization
+x = preprocessing.normalize(x)
+
+#splitting
+x_train, x_val, y_train, y_val \
+    = train_test_split(x, y, test_size=0.15, random_state=42 , shuffle=True)
+   #
+#For example, if variable y is a binary categorical variable with values 0 and 1 and there are 25% of zeros 
+#and 75% of ones, stratify=y will make sure that your random split has 25% of 0's and 75% of 1's
+# feature selection through PCA
 
 print('ready.')
 
-class_names = y_train['Class'].unique()
 
 ##################################################################
 #model_3 definition and evaluation: k-fold cross val., confusion matrix, gridsearch
@@ -45,32 +61,24 @@ class_names = y_train['Class'].unique()
 
 tree3 = DecisionTreeClassifier(random_state=42)
 
-#function for creating better model from grid search
-def model_grid_params(model, params):
-        new_model = GridSearchCV(estimator=model,
-                                 param_grid=params, cv=5, n_jobs=-1,
-                                 scoring="recall_macro")
-        start = time()
-        new_model.fit(x_train,y_train) #when “fitting” it on a dataset 
-        #all the possible combinations of parameter values are evaluated and the best combination is retained
-
-        print("GridSearchCV took %.2f seconds." % (time() - start))
-
-        print(new_model, '\n')
-        return new_model
-
 tree_params = {
     'criterion': ['gini', 'entropy'],
     'max_depth': [4,5,6,7,8,20,30]
+    'min_samples_leaf':[1, 5, 10, 20, 50, 100]
 }
+start=time()
+grid_search = GridSearchCV(estimator=tree3, param_grid=tree_params, scoring='accuracy', cv=5, n_jobs=-1)
+grid_search.fit(x_train, y_train)
+accuracy = grid_search.best_score_
+best_params = grid_search.best_params_
 
-tree3 = model_grid_params(tree3, tree_params)
+print("Grid search took:", time() - start, '\n')
+
+print("Best params GridS for random forest:", grid_search.best_params_, '\n')
+print("Best accuracy:", grid_search.best_score_, '\n')
 
 
-print("Best params GridS for decision tree:", tree3.best_params_, '\n')
-
-
-score = cross_val_score(tree3, x_train, y_train,
+'''score = cross_val_score(tree3, x_train, y_train,
                               cv=5,
                               scoring='accuracy')
 
@@ -80,6 +88,7 @@ tree3.fit(x_train,y_train)
 y_pred=tree3.predict(x_test)
 
 cm =confusion_matrix(y_test, y_pred)
+class_names = ['BRCA', 'COAD', 'KIRC', 'LUAD', 'PRAD']
 ax= plt.subplot()
 sns.heatmap(cm, annot=True, ax = ax,cmap='Greens') #annot=True to annotate cells
 # labels, title and ticks
@@ -91,4 +100,4 @@ ax.yaxis.set_ticklabels(class_names)
 ax.set_xlim(0,5)
 ax.set_ylim(5,0)
 
-plt.show()
+plt.show()'''
