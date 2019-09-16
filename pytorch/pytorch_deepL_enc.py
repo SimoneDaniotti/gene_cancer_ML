@@ -81,6 +81,9 @@ print('Done.')
 ##################################
 #Data Preparing for torch
 ##################################
+torch.manual_seed(42)
+
+
 x_train = torch.Tensor(x_train)
 y_train = torch.tensor(y_train)
 x_val = torch.Tensor(x_val)
@@ -111,6 +114,11 @@ val_dl = DataLoader(val_ds, batch_size=bs)
 criterion = nn.CrossEntropyLoss()
 epochs=200
 lr=0.001
+
+def init_weights(m):    # Funzione che inizializza i pesi dei layer nn.Linear() della rete definita con la funzione nn.Sequential()
+    if type(m) == torch.nn.Linear:
+        torch.nn.init.xavier_uniform_(m.weight)
+        m.bias.data.fill_(0.01)
 
 class Net(nn.Module):
     def __init__(self,in_size,n_hidden1,n_hidden2,n_hidden3,out_size,p=0):
@@ -154,6 +162,9 @@ from IPython.core.debugger import set_trace #for debugging purposes
 #(Note that we always call model.train() before training, and model.eval() before inference
 
 start = time()
+
+#weight initialization
+model.apply(init_weights)
 
 for epoch in range(epochs):
     

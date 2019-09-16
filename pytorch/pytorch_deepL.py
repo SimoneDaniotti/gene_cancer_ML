@@ -20,6 +20,7 @@ from time import time
 ###########################################
 # load the dataset and drop useless columns
 ###########################################
+
 print('Dataset loading...')
 
 x = pd.read_csv("../data.csv")
@@ -93,6 +94,8 @@ y_train=y_train.float()
 #TensorDataset and DataLoader
 ##################################
 
+torch.manual_seed(42)
+
 bs=16
 
 
@@ -107,9 +110,15 @@ val_dl = DataLoader(val_ds, batch_size=bs)
 #Model defining
 ##################################
 
+def init_weights(m):    # Funzione che inizializza i pesi dei layer nn.Linear() della rete definita con la funzione nn.Sequential()
+    if type(m) == torch.nn.Linear:
+        torch.nn.init.xavier_uniform_(m.weight)
+        m.bias.data.fill_(0.01)
+
+
 criterion = nn.BCEWithLogitsLoss(weight=class_weights)
 epochs=300
-lr=0.001
+lr=0.01
 
 class Net(nn.Module):
     def __init__(self,in_size,n_hidden1,n_hidden2,n_hidden3,out_size,p=0):
@@ -149,10 +158,16 @@ loss_val=[]
 ##################################
 #Training
 ##################################
+
 from IPython.core.debugger import set_trace #for debugging purposes
 #(Note that we always call model.train() before training, and model.eval() before inference
+
 start = time()
 
+#weight initialization
+model.apply(init_weights)
+
+#training
 for epoch in range(epochs):
     
     model.train() #enter model in training mode: consider dropout and other stuff
