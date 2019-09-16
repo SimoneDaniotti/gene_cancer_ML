@@ -22,6 +22,7 @@ start = time()
 ###########################################
 # load the dataset and drop useless columns
 ###########################################
+
 print('Dataset loading...')
 
 x = pd.read_csv("../data.csv")
@@ -201,19 +202,21 @@ print("Hamming Loss for best Tree Classifier Model: {}".format(tree_val_hamming)
 #########
 #Printing tree shape
 #########
-
-'''from sklearn.tree import export_graphviz
+x = pd.read_csv("../data.csv")
+x = x.drop(x.columns[0], axis=1)
+#x_train=pd.DataFrame(x_train)
+from sklearn.tree import export_graphviz
 export_graphviz(
             tree2,
-            out_file="tree2.dot",
-            feature_names=x_train.columns.tolist(),
-            class_names=y_train.Class.tolist(),
+            out_file="tree_best.dot",
+            feature_names=x.columns.tolist(),
+            class_names=['BRCA', 'COAD', 'KIRC', 'LUAD', 'PRAD'],
             rounded=True,
             filled=True
         )
 # Convert to png
 from subprocess import call
-call(['dot', '-Tpng', 'tree2.dot', '-o', 'tree2.png', '-Gdpi=600'])'''
+call(['dot', '-Tpng', 'tree_best.dot', '-o', 'tree_best.png', '-Gdpi=600'])
 
 #####################################################################
 

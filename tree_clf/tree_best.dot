@@ -1,0 +1,29 @@
+digraph Tree {
+node [shape=box, style="filled, rounded", color="black", fontname=helvetica] ;
+edge [fontname=helvetica] ;
+0 [label="gene_18746 <= 0.009\ngini = 0.759\nsamples = 680\nvalue = [252, 66, 128, 118, 116]\nclass = BRCA", fillcolor="#f9e3d3"] ;
+1 [label="gene_12983 <= 0.008\ngini = 0.743\nsamples = 430\nvalue = [5, 66, 127, 118, 114]\nclass = KIRC", fillcolor="#f9fefd"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+3 [label="gene_17664 <= 0.008\ngini = 0.659\nsamples = 302\nvalue = [5, 66, 0, 117, 114]\nclass = LUAD", fillcolor="#fcfcff"] ;
+1 -> 3 ;
+5 [label="gene_3523 <= 0.006\ngini = 0.489\nsamples = 188\nvalue = [5, 66, 0, 117, 0]\nclass = LUAD", fillcolor="#adacf4"] ;
+3 -> 5 ;
+7 [label="gene_13631 <= 0.008\ngini = 0.079\nsamples = 122\nvalue = [5, 0, 0, 117, 0]\nclass = LUAD", fillcolor="#4441e6"] ;
+5 -> 7 ;
+9 [label="gini = 0.0\nsamples = 5\nvalue = [5, 0, 0, 0, 0]\nclass = BRCA", fillcolor="#e58139"] ;
+7 -> 9 ;
+10 [label="gini = 0.0\nsamples = 117\nvalue = [0, 0, 0, 117, 0]\nclass = LUAD", fillcolor="#3c39e5"] ;
+7 -> 10 ;
+8 [label="gini = 0.0\nsamples = 66\nvalue = [0, 66, 0, 0, 0]\nclass = COAD", fillcolor="#7be539"] ;
+5 -> 8 ;
+6 [label="gini = 0.0\nsamples = 114\nvalue = [0, 0, 0, 0, 114]\nclass = PRAD", fillcolor="#e539c0"] ;
+3 -> 6 ;
+4 [label="gini = 0.016\nsamples = 128\nvalue = [0, 0, 127, 1, 0]\nclass = KIRC", fillcolor="#3be5c5"] ;
+1 -> 4 ;
+2 [label="gene_13653 <= 0.011\ngini = 0.024\nsamples = 250\nvalue = [247, 0, 1, 0, 2]\nclass = BRCA", fillcolor="#e5833b"] ;
+0 -> 2 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+11 [label="gini = 0.0\nsamples = 247\nvalue = [247, 0, 0, 0, 0]\nclass = BRCA", fillcolor="#e58139"] ;
+2 -> 11 ;
+12 [label="gini = 0.444\nsamples = 3\nvalue = [0, 0, 1, 0, 2]\nclass = PRAD", fillcolor="#f29ce0"] ;
+2 -> 12 ;
+}
