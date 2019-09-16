@@ -18,6 +18,8 @@ from sklearn.model_selection import train_test_split
 
 import seaborn as sns
 
+from time import time
+
 ###########################################
 # load the dataset and drop useless columns
 ###########################################
@@ -37,6 +39,7 @@ print('Done.')
 # drop the first column which only contains strings
 min_max_scaler = preprocessing.MinMaxScaler()
 x = min_max_scaler.fit_transform(x)
+
 #####################
 #encoding y classes
 #####################
@@ -106,8 +109,8 @@ val_dl = DataLoader(val_ds, batch_size=bs)
 ##################################
 
 criterion = nn.CrossEntropyLoss()
-epochs=50
-lr=0.01
+epochs=200
+lr=0.001
 
 class Net(nn.Module):
     def __init__(self,in_size,n_hidden1,n_hidden2,n_hidden3,out_size,p=0):
@@ -150,6 +153,8 @@ loss_val=[]
 from IPython.core.debugger import set_trace #for debugging purposes
 #(Note that we always call model.train() before training, and model.eval() before inference
 
+start = time()
+
 for epoch in range(epochs):
     
     model.train() #enter model in training mode: consider dropout and other stuff
@@ -167,10 +172,8 @@ for epoch in range(epochs):
         opt.step()      # update the weights
         opt.zero_grad() # Zero gradients
         
-    '''model.eval()  
-    with torch.no_grad():
-        for xb, yb in val_dl:
-            loss_val.append(criterion(model(xb), yb))'''
+
+print("Training took %.2f seconds." % (time() - start))
 
 
 

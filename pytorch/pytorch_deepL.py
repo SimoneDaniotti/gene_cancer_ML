@@ -15,7 +15,7 @@ from sklearn import decomposition
 from sklearn.model_selection import train_test_split
 
 import seaborn as sns
-
+from time import time
 
 ###########################################
 # load the dataset and drop useless columns
@@ -67,7 +67,7 @@ x = pca.fit_transform(x)
 print('Splitting..')
 
 x_train, x_val, y_train, y_val \
-    = train_test_split(x, y, test_size=0.2, random_state=42 ,stratify=y, shuffle=True)
+    = train_test_split(x, y, test_size=0.15, random_state=42 , shuffle=True)
    #
 #For example, if variable y is a binary categorical variable with values 0 and 1 and there are 25% of zeros 
 #and 75% of ones, stratify=y will make sure that your random split has 25% of 0's and 75% of 1's
@@ -78,6 +78,7 @@ y_integers = np.argmax(y, axis=1)
 class_weights = utils.compute_class_weight('balanced', np.unique(y_integers), y_integers)
 
 class_weights =torch.Tensor(class_weights)
+
 ##################################
 #Data Preparing for torch
 ##################################
@@ -108,7 +109,7 @@ val_dl = DataLoader(val_ds, batch_size=bs)
 
 criterion = nn.BCEWithLogitsLoss(weight=class_weights)
 epochs=300
-lr=0.01
+lr=0.001
 
 class Net(nn.Module):
     def __init__(self,in_size,n_hidden1,n_hidden2,n_hidden3,out_size,p=0):
@@ -135,8 +136,8 @@ class Net(nn.Module):
 
 def get_model():
     model = Net(len(train_ds[1][0]),50,25,10,5,p=0.2)
-    #return model, optim.Adam(model.parameters(),betas=(0.9, 0.999), eps=1e-08,  lr=lr)
-    return model, optim.SGD(model.parameters(),  lr=lr,weight_decay=1e-6, momentum=0.9, nesterov=True)
+    return model, optim.Adam(model.parameters(),betas=(0.9, 0.999), eps=1e-08,  lr=lr)
+    #return model, optim.SGD(model.parameters(),  lr=lr,weight_decay=1e-6, momentum=0.9, nesterov=True)
 
 model, opt = get_model()
 print(model)
@@ -150,6 +151,7 @@ loss_val=[]
 ##################################
 from IPython.core.debugger import set_trace #for debugging purposes
 #(Note that we always call model.train() before training, and model.eval() before inference
+start = time()
 
 for epoch in range(epochs):
     
@@ -168,12 +170,8 @@ for epoch in range(epochs):
         opt.step()      # update the weights
         opt.zero_grad() # Zero gradients
         
-    '''model.eval()  
-    with torch.no_grad():
-        for xb, yb in val_dl:
-            loss_val.append(criterion(model(xb), yb))'''
 
-
+print("Training took %.2f seconds." % (time() - start))
 
 ##################################
 #Confusion Matrix
