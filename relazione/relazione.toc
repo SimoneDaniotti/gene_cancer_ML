@@ -1,19 +1,27 @@
-\contentsline {title}{Multiclassification on gene expression data}{1}{}
+\contentsline {title}{Multi-class classification on gene expression data}{1}{}
 \contentsline {abstract}{Abstract}{1}{}
 \tocdepth@munge 
 \contentsline {section}{\numberline {}Contents}{1}{}
 \tocdepth@restore 
 \contentsline {section}{\numberline {I}Dataset description}{1}{}
 \contentsline {section}{\numberline {II}Dataset Manipulation}{1}{}
-\contentsline {section}{\numberline {III}Architectures }{1}{}
-\contentsline {section}{\numberline {IV}Parameter optimization and Validation}{1}{}
-\contentsline {section}{\numberline {V}Models Evaluation}{1}{}
-\contentsline {section}{\numberline {VI}Conclusions}{1}{}
-\contentsline {subsection}{\numberline {A}Second-level heading: Formatting}{1}{}
-\contentsline {subsubsection}{\numberline {1}Wide text (A level-3 head)}{1}{}
-\contentsline {paragraph}{\numberline {a}Note (Fourth-level head is run in)}{1}{}
-\contentsline {subsection}{\numberline {B}Citations and References}{1}{}
-\contentsline {subsubsection}{\numberline {1}Citations}{2}{}
-\contentsline {paragraph}{\numberline {a}Syntax}{2}{}
-\contentsline {paragraph}{\numberline {b}Eliding repeated information}{2}{}
-\contentsline {paragraph}{\numberline {c}The options of the cite command itself}{2}{}
+\contentsline {subsection}{\numberline {A}Preliminary manipulation}{1}{}
+\contentsline {subsection}{\numberline {B}Label handling}{1}{}
+\contentsline {subsection}{\numberline {C}Train and Test Set}{1}{}
+\contentsline {subsection}{\numberline {D}Class Weighting}{2}{}
+\contentsline {section}{\numberline {III}Architectures}{2}{}
+\contentsline {subsection}{\numberline {A}Support Vector Machines (SVM)}{2}{}
+\contentsline {subsection}{\numberline {B}Decision Tree Classifier and Random Forests}{2}{}
+\contentsline {subsection}{\numberline {C}Deep Learning}{2}{}
+\contentsline {section}{\numberline {IV}Parameter optimization and Validation}{2}{}
+\contentsline {subsection}{\numberline {A}Cross-Validation}{2}{}
+\contentsline {subsection}{\numberline {B}Grid Search CV (and Random Search)}{2}{}
+\contentsline {subsection}{\numberline {C}Architecture setting}{2}{}
+\contentsline {subsubsection}{\numberline {1}Parameters}{2}{}
+\contentsline {subsubsection}{\numberline {2}Optimizers}{2}{}
+\contentsline {subsubsection}{\numberline {3}Losses}{2}{}
+\contentsline {section}{\numberline {V}Models Evaluation}{2}{}
+\contentsline {subsection}{\numberline {A}PCA and Permutation Importance}{2}{}
+\contentsline {subsection}{\numberline {B}Metrics}{2}{}
+\contentsline {section}{\numberline {VI}Conclusions and Outlook}{2}{}
+\contentsline {section}{\numberline {}References}{2}{}
