@@ -59,38 +59,23 @@
 
 %\preprint{APS/123-QED}
 
-\title{Manuscript Title}% Force line breaks with \\
+
+\title{Multiclassification on gene expression data}% Force line breaks with \\
 \thanks{A footnote to the article title}%
 
-\author{Ann Author}
- \altaffiliation[Also at ]{Physics Department, XYZ University.}%Lines break automatically or can be forced with \\
-\author{Second Author}%
- \email{Second.Author@institution.edu}
+\author{Simone Daniotti}
+ \affiliation{Physics Department, University of Milan.}
+ \email{daniottisimone@gmail.com}
+
+\author{Riccardo Castelli}
+  \email{riccardo.castelli3@studenti.unimi.it}
 \affiliation{%
- Authors' institution and/or address\\
- This line break forced with \textbackslash\textbackslash
+ Informatics Department, University of Milan
 }%
 
-\collaboration{MUSO Collaboration}%\noaffiliation
 
-\author{Charlie Author}
- \homepage{http://www.Second.institution.edu/~Charlie.Author}
-\affiliation{
- Second institution and/or address\\
- This line break forced% with \\
-}%
-\affiliation{
- Third institution, the second for Charlie Author
-}%
-\author{Delta Author}
-\affiliation{%
- Authors' institution and/or address\\
- This line break forced with \textbackslash\textbackslash
-}%
 
-\collaboration{CLEO Collaboration}%\noaffiliation
-
-\date{\today}% It is always \today, today,
+\date{September 26, 2019}% It is always \today, today,
              %  but any date may be explicitly specified
 
 \begin{abstract}
@@ -113,30 +98,22 @@ use the optional argument of the \verb+\item+ command to give the category of ea
                               %display desired
 \maketitle
 
-%\tableofcontents
+\tableofcontents
 
-\section{\label{sec:level1}First-level heading}
+\section{\label{sec:level1}Dataset description}
 
-This sample document demonstrates proper use of REV\TeX~4.1 (and
-\LaTeXe) in mansucripts prepared for submission to APS
-journals. Further information can be found in the REV\TeX~4.1
-documentation included in the distribution or available at
-\url{http://authors.aps.org/revtex4/}.
+The dataset for this work is taken from UCI Machine Learning Repo (available at \url{https://archive.ics.uci.edu/ml/datasets/gene+expression+cancer+RNA-Seq}); this is part of the RNA-Seq (HiSeq, a tool for measuring gene expression) PANCAN data set. It is a collection of gene expressions of patients having different types of tumor: BRCA(breast), KIRC(kidney), COAD(colon), LUAD(lung) and PRAD(prostate).
+These data represent the quantity of gene information used in the synthesis of a functional gene product.
 
-When commands are referred to in this example file, they are always
-shown with their required arguments, using normal \TeX{} format. In
-this format, \verb+#1+, \verb+#2+, etc. stand for required
-author-supplied arguments to commands. For example, in
-\verb+\section{#1}+ the \verb+#1+ stands for the title text of the
-author's section heading, and in \verb+\title{#1}+ the \verb+#1+
-stands for the title text of the paper.
+\section{\label{sec:level1}Dataset Manipulation}
 
-Line breaks in section headings at all levels can be introduced using
-\textbackslash\textbackslash. A blank input line tells \TeX\ that the
-paragraph has ended. Note that top-level section headings are
-automatically uppercased. If a specific letter or word should appear in
-lowercase instead, you must escape it using \verb+\lowercase{#1}+ as
-in the word ``via'' above.
+\section{\label{sec:level1}Architectures
+}
+\section{\label{sec:level1}Parameter optimization and Validation}
+
+\section{\label{sec:level1}Models Evaluation}
+
+\section{\label{sec:level1}Conclusions}
 
 \subsection{\label{sec:level2}Second-level heading: Formatting}
 

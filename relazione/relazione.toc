@@ -1,0 +1,19 @@
+\contentsline {title}{Multiclassification on gene expression data}{1}{}
+\contentsline {abstract}{Abstract}{1}{}
+\tocdepth@munge 
+\contentsline {section}{\numberline {}Contents}{1}{}
+\tocdepth@restore 
+\contentsline {section}{\numberline {I}Dataset description}{1}{}
+\contentsline {section}{\numberline {II}Dataset Manipulation}{1}{}
+\contentsline {section}{\numberline {III}Architectures }{1}{}
+\contentsline {section}{\numberline {IV}Parameter optimization and Validation}{1}{}
+\contentsline {section}{\numberline {V}Models Evaluation}{1}{}
+\contentsline {section}{\numberline {VI}Conclusions}{1}{}
+\contentsline {subsection}{\numberline {A}Second-level heading: Formatting}{1}{}
+\contentsline {subsubsection}{\numberline {1}Wide text (A level-3 head)}{1}{}
+\contentsline {paragraph}{\numberline {a}Note (Fourth-level head is run in)}{1}{}
+\contentsline {subsection}{\numberline {B}Citations and References}{1}{}
+\contentsline {subsubsection}{\numberline {1}Citations}{2}{}
+\contentsline {paragraph}{\numberline {a}Syntax}{2}{}
+\contentsline {paragraph}{\numberline {b}Eliding repeated information}{2}{}
+\contentsline {paragraph}{\numberline {c}The options of the cite command itself}{2}{}
