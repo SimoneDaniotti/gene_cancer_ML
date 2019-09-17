@@ -5,4 +5,4 @@ Bioinformatics multi-class classification machine learning project developed by 
 ## Dataset
 
 Dataset used avaliable here:
-* [Dropwizard](https://archive.ics.uci.edu/ml/machine-learning-databases/00401/) 
+* [Dataset](https://archive.ics.uci.edu/ml/machine-learning-databases/00401/) 
