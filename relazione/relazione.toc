@@ -1,27 +1,21 @@
-\contentsline {title}{Multi-class classification on gene expression data}{1}{}
-\contentsline {abstract}{Abstract}{1}{}
-\tocdepth@munge 
-\contentsline {section}{\numberline {}Contents}{1}{}
-\tocdepth@restore 
-\contentsline {section}{\numberline {I}Dataset description}{1}{}
-\contentsline {section}{\numberline {II}Dataset Manipulation}{1}{}
-\contentsline {subsection}{\numberline {A}Preliminary manipulation}{1}{}
-\contentsline {subsection}{\numberline {B}Label handling}{1}{}
-\contentsline {subsection}{\numberline {C}Train and Test Set}{1}{}
-\contentsline {subsection}{\numberline {D}Class Weighting}{1}{}
-\contentsline {section}{\numberline {III}Architectures}{1}{}
-\contentsline {subsection}{\numberline {A}Support Vector Machines (SVM)}{1}{}
-\contentsline {subsection}{\numberline {B}Decision Tree Classifier and Random Forests}{1}{}
-\contentsline {subsection}{\numberline {C}Deep Learning}{2}{}
-\contentsline {section}{\numberline {IV}Parameter optimization and Validation}{2}{}
-\contentsline {subsection}{\numberline {A}Cross-Validation}{2}{}
-\contentsline {subsection}{\numberline {B}Grid Search CV (and Random Search)}{2}{}
-\contentsline {subsection}{\numberline {C}Architecture setting}{2}{}
-\contentsline {subsubsection}{\numberline {1}Parameters}{2}{}
-\contentsline {subsubsection}{\numberline {2}Optimizers}{2}{}
-\contentsline {subsubsection}{\numberline {3}Losses}{2}{}
-\contentsline {section}{\numberline {V}Models Evaluation}{2}{}
-\contentsline {subsection}{\numberline {A}PCA and Permutation Importance}{2}{}
-\contentsline {subsection}{\numberline {B}Metrics}{2}{}
-\contentsline {section}{\numberline {VI}Conclusions and Outlook}{2}{}
-\contentsline {section}{\numberline {}References}{2}{}
+\contentsline {section}{\numberline {1}Dataset description}{1}% 
+\contentsline {section}{\numberline {2}Dataset Manipulation}{1}% 
+\contentsline {subsection}{\numberline {2.1}Preliminary manipulation}{1}% 
+\contentsline {subsection}{\numberline {2.2}Label handling}{1}% 
+\contentsline {subsection}{\numberline {2.3}Train and Test Set}{2}% 
+\contentsline {subsection}{\numberline {2.4}Class Weighting}{2}% 
+\contentsline {section}{\numberline {3}Architectures}{2}% 
+\contentsline {subsection}{\numberline {3.1}Support Vector Machines (SVM)}{2}% 
+\contentsline {subsection}{\numberline {3.2}Decision Tree Classifier and Random Forests}{2}% 
+\contentsline {subsection}{\numberline {3.3}Deep Learning}{4}% 
+\contentsline {section}{\numberline {4}Parameter optimization and Validation}{4}% 
+\contentsline {subsection}{\numberline {4.1}Cross-Validation}{4}% 
+\contentsline {subsection}{\numberline {4.2}Grid Search CV (and Random Search)}{4}% 
+\contentsline {subsection}{\numberline {4.3}Architecture setting}{4}% 
+\contentsline {subsubsection}{\numberline {4.3.1}Parameters}{4}% 
+\contentsline {subsubsection}{\numberline {4.3.2}Optimizers}{4}% 
+\contentsline {subsubsection}{\numberline {4.3.3}Losses}{4}% 
+\contentsline {section}{\numberline {5}Models Evaluation}{4}% 
+\contentsline {subsection}{\numberline {5.1}PCA and Permutation Importance}{4}% 
+\contentsline {subsection}{\numberline {5.2}Metrics}{4}% 
+\contentsline {section}{\numberline {6}Conclusions and Outlook}{4}% 

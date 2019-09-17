@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.8.8)  17 SEP 2019 17:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.8.8)  17 SEP 2019 20:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -6,180 +6,37 @@ entering extended mode
 **relazione.tex
 (./relazione.tex
 LaTeX2e <2018-12-01>
-(/usr/local/texlive/2019/texmf-dist/tex/latex/revtex/revtex4-1.cls
-Document Class: revtex4-1 2010/07/25/20:33:00 4.1r (http://publish.aps.org/revt
-ex4/ for documentation)
- Copyright (c) 2009 The American Physical Society.
- mailto:revtex@aps.org
- Licensed under the LPPL:
-http://www.ctan.org/tex-archive/macros/latex/base/lppl.txt
- Arthur Ogawa <arthur_ogawa at sbcglobal dot net>
- Based on work by David Carlisle <david at dcarlisle.demon.co.uk>.
-ltxutil[2010/07/25/20:33:00 4.1r utilities package (portions licensed from W. E
-. Baxter web at superscript.com)]
-LaTeX Info: Redefining \@centercr on input line 308.
-Class revtex4-1 Info: Repairing broken LaTeX eqnarray on input line 358.
-\eqncolsep=\skip41
-Class revtex4-1 Info: Repairing hyperref-unfriendly LaTeX definition of \mpfoot
-note on input line 433.
-Class revtex4-1 Info: Repairing broken LateX \@sect on input line 755.
-\intertabularlinepenalty=\count80
-\@tbpen=\count81
-\@arstrutbox@hline=\box27
-Class revtex4-1 Info: Repairing broken LaTeX \@xbitor on input line 1786.
-Class revtex4-1 Info: Making \typeout \long on input line 2046.
-ltxfront[2010/07/25/20:33:00 4.1r frontmatter package (AO,DPC)]
-\c@affil=\count82
-\c@collab=\count83
-\absbox=\box28
-ltxgrid[2010/07/25/20:33:00 4.1r page grid package (portions licensed from W. E
-. Baxter web at superscript.com)]
-\c@linecount=\count84
-\output@latex=\toks14
-\box@size@1=\box29
-\box@size@2=\box30
-\@protection@box=\box31
-\@topmark@saved=\toks15
-\footins@saved=\box32
-\footins@recovered=\box33
-\column@recovered=\box34
-\pagesofar=\box35
-\footsofar=\box36
-\pagegrid@col=\count85
-Class revtex4-1 Info: Overriding \@vspace, \@vspacer, \@no@pgbk, \@newline, and
- \\  on input line 5578.
-\c@part=\count86
-\c@section=\count87
-\c@subsection=\count88
-\c@subsubsection=\count89
-\c@paragraph=\count90
-\c@subparagraph=\count91
-\abovecaptionskip=\skip42
-\belowcaptionskip=\skip43
-\c@figure=\count92
-\fbox@1=\box37
-\c@table=\count93
-\fbox@2=\box38
-\c@video=\count94
-\fbox@4=\box39
-\@bibdataout=\write3
-\widetext@top=\box40
-\widetext@bot=\box41
-Class revtex4-1 Info: Selecting society aps on input line 7542.
-(/usr/local/texlive/2019/texmf-dist/tex/latex/revtex/aps4-1.rtx
-File: aps4-1 2010/07/25/20:33:00 4.1r (http://publish.aps.org/revtex4/ for docu
-mentation)
-Class revtex4-1 Info: RevTeX society APS selected on input line 31.
+(/usr/local/texlive/2019/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+(/usr/local/texlive/2019/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
 )
-
-Class revtex4-1 Warning: No journal specified, using default pra.
-
-Class revtex4-1 Info: APS journal PRA selected on input line 7545.
-(/usr/local/texlive/2019/texmf-dist/tex/latex/revtex/aps10pt4-1.rtx
-File: aps10pt4-1 2010/07/25/20:33:00 4.1r (http://publish.aps.org/revtex4/ for 
-documentation)
-Class revtex4-1 Info: RevTeX pointsize 10pt selected on input line 30.
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
 )
-(/usr/local/texlive/2019/texmf-dist/tex/latex/textcase/textcase.sty
-Package: textcase 2004/10/07 v0.07 Text only upper/lower case changing (DPC)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/preprint/authblk.sty
+Package: authblk 2001/02/27 1.3 (PWD)
+\affilsep=\skip43
+\@affilsep=\skip44
+\c@Maxaffil=\count88
+\c@authors=\count89
+\c@affil=\count90
 )
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/amssymb.sty
-Package: amssymb 2013/01/14 v3.01 AMS font symbols
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/amsfonts.sty
-Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks16
-\symAMSa=\mathgroup4
-\symAMSb=\mathgroup5
-LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
-(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2018/12/01 v2.17b AMS math features
-\@mathmargin=\skip44
-
-For additional information on amsmath, use the `?' option.
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amstext.sty
-Package: amstext 2000/06/29 v2.01 AMS text
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsgen.sty
-File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks17
-\ex@=\dimen102
-)
-LaTeX Info: Redefining \text on input line 28.
-)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsbsy.sty
-Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen103
-)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsmath/amsopn.sty
-Package: amsopn 2016/03/08 v2.02 operator names
-)
-\inf@bad=\count95
-LaTeX Info: Redefining \frac on input line 223.
-\uproot@=\count96
-\leftroot@=\count97
-LaTeX Info: Redefining \overline on input line 385.
-\classnum@=\count98
-\DOTSCASE@=\count99
-LaTeX Info: Redefining \ldots on input line 482.
-LaTeX Info: Redefining \dots on input line 485.
-LaTeX Info: Redefining \cdots on input line 606.
-\Mathstrutbox@=\box42
-\strutbox@=\box43
-\big@size=\dimen104
-LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
-\macc@depth=\count100
-\c@MaxMatrixCols=\count101
-\dotsspace@=\muskip10
-\c@parentequation=\count102
-\dspbrk@lvl=\count103
-\tag@help=\toks18
-\row@=\count104
-\column@=\count105
-\maxfields@=\count106
-\andhelp@=\toks19
-\eqnshift@=\dimen105
-\alignsep@=\dimen106
-\tagshift@=\dimen107
-\tagwidth@=\dimen108
-\totwidth@=\dimen109
-\lineht@=\dimen110
-\@envbody=\toks20
-\multlinegap=\skip45
-\multlinetaggap=\skip46
-\mathdisplay@stack=\toks21
-LaTeX Info: Redefining \[ on input line 2844.
-LaTeX Info: Redefining \] on input line 2845.
-)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/url/url.sty
-\Urlmuskip=\muskip11
-Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/natbib/natbib.sty
-Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip47
-\bibsep=\skip48
-LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count107
-)
-Class revtex4-1 Info: Repairing natbib's \BibitemShut on input line 7549.
-
-(/usr/local/texlive/2019/texmf-dist/tex/latex/revtex/revsymb4-1.sty
-Package: revsymb4-1 2010/07/25/20:33:00 4.1r (http://publish.aps.org/revtex4/ f
-or documentation)
-LaTeX Info: Redefining \frak on input line 95.
-LaTeX Info: Redefining \Bbb on input line 111.
-LaTeX Info: Redefining \REV@mathfrak on input line 119.
-))
 (/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks22
+\KV@toks@=\toks14
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
@@ -195,66 +52,58 @@ Package graphics Info: Driver file: pdftex.def on input line 99.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen111
-\Gin@req@width=\dimen112
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/tools/dcolumn.sty
 Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/tools/array.sty
 Package: array 2018/12/30 v2.4k Tabular extension package (FMi)
-\col@sep=\dimen113
-\ar@mcellbox=\box44
-\extrarowheight=\dimen114
-\NC@list=\toks23
-\extratabsurround=\skip49
-\backup@length=\skip50
-\ar@cellbox=\box45
+\col@sep=\dimen105
+\ar@mcellbox=\box27
+\extrarowheight=\dimen106
+\NC@list=\toks15
+\extratabsurround=\skip45
+\backup@length=\skip46
+\ar@cellbox=\box28
 ))
 (/usr/local/texlive/2019/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
-\symboldoperators=\mathgroup6
-\symboldletters=\mathgroup7
-\symboldsymbols=\mathgroup8
+\symboldoperators=\mathgroup4
+\symboldletters=\mathgroup5
+\symboldsymbols=\mathgroup6
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
 LaTeX Info: Redefining \bm on input line 207.
 )
-Class revtex4-1 Info: Unrecognized array package. Please update this document c
-lass! (Proceeding with fingers crossed.) on input line 58.
-Class revtex4-1 Info: Robustifying \LaTeX's \boldmath command on input line 58.
-
-Class revtex4-1 Info: cite was not loaded (OK!) on input line 58.
-Class revtex4-1 Info: mcite was not loaded (OK!) on input line 58.
-Class revtex4-1 Info: multicol was not loaded (OK!) on input line 58.
- (./relazione.aux)
+No file relazione.aux.
 \openout1 = `relazione.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 19.
+LaTeX Font Info:    ... okay on input line 19.
 (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count108
-\scratchdimen=\dimen115
-\scratchbox=\box46
-\nofMPsegments=\count109
-\nofMParguments=\count110
-\everyMPshowfont=\toks24
-\MPscratchCnt=\count111
-\MPscratchDim=\dimen116
-\MPnumerator=\count112
-\makeMPintoPDFobject=\count113
-\everyMPtoPDFconversion=\toks25
+\scratchcounter=\count91
+\scratchdimen=\dimen107
+\scratchbox=\box29
+\nofMPsegments=\count92
+\nofMParguments=\count93
+\everyMPshowfont=\toks16
+\MPscratchCnt=\count94
+\MPscratchDim=\dimen108
+\MPnumerator=\count95
+\makeMPintoPDFobject=\count96
+\everyMPtoPDFconversion=\toks17
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -306,142 +155,96 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\openout3 = `relazioneNotes.bib'.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 20.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 20.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 20.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 20.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 20.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 95.
+No file relazione.toc.
+\tf@toc=\write3
+\openout3 = `relazione.toc'.
 
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 95.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 33.
 
-(/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-(./relazione.toc)
-\tf@toc=\write4
-\openout4 = `relazione.toc'.
-
-
-
-Package natbib Warning: Citation `Dua:2019' on page 1 undefined on input line 1
-01.
-
-
-Package natbib Warning: Citation `weinstein2013cancer' on page 1 undefined on i
-nput line 102.
+LaTeX Warning: Citation `Dua:2019' on page 1 undefined on input line 33.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--103
-[]\OT1/cmr/m/n/10 The dataset for this work is taken from
+LaTeX Warning: Citation `weinstein2013cancer' on page 1 undefined on input line
+ 34.
+
+
+Overfull \hbox (40.27864pt too wide) in paragraph at lines 43--44
+\OT1/cmr/m/n/10 for-mat, then can be eas-ily im-ported in a Pan-das Dataframe (
+https://pandas.pydata.org/).
+ []
+
+[1
+
+{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (18.32364pt too wide) in paragraph at lines 56--57
+\OML/cmm/m/it/10 learn:org=stable=modules=generated=sklearn:model[]election:tra
+in[]est[]plit:html$\OT1/cmr/m/n/10 ).
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--103
-\OT1/cmr/m/n/10 UCI Ma-chine Learn-ing Repo (avail-able at
- []
+LaTeX Warning: Citation `geron2017hands' on page 2 undefined on input line 65.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 101--103
-\OT1/cmtt/m/n/10 https : / / archive . ics . uci . edu / ml / datasets / gene +
-
- []
+LaTeX Warning: Citation `bishop2006pattern' on page 2 undefined on input line 6
+5.
 
 
-Underfull \hbox (badness 6157) in paragraph at lines 124--125
-[]\OT1/cmr/m/n/10 For train-ing the net and then eval-u-at-ing it,
- []
+LaTeX Warning: Citation `hertz1991introduction' on page 2 undefined on input li
+ne 66.
 
-
-Underfull \hbox (badness 1874) in paragraph at lines 124--125
-\OT1/cmr/m/n/10 we split the dataset in train-ing and test set us-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
-\OT1/cmr/m/n/10 ing the Sklearn li-brary $\OML/cmm/m/it/10 train[]test[]split$ 
-\OT1/cmr/m/n/10 ($\OT1/cmtt/m/n/10 https :
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
-\OT1/cmtt/m/n/10 / / scikit-[]learn . org / stable / modules / generated /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
-\OT1/cmtt/m/n/10 sklearn . model _ selection . train _ test _ split . html$\OT1
-/cmr/m/n/10 ).
- []
-
-
-Package natbib Warning: Citation `geron2017hands' on page 1 undefined on input 
-line 133.
-
-
-Package natbib Warning: Citation `bishop2006pattern' on page 1 undefined on inp
-ut line 133.
-
-
-Package natbib Warning: Citation `hertz1991introduction' on page 1 undefined on
- input line 134.
-
-[1{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-<img/tree_best.png, id=20, 7973.79pt x 5370.0625pt>
+<img/tree_best.png, id=18, 7973.79pt x 5370.0625pt>
 File: img/tree_best.png Graphic file (type png)
 <use img/tree_best.png>
-Package pdftex.def Info: img/tree_best.png  used on input line 150.
-(pdftex.def)             Requested size: 246.0pt x 165.60164pt.
-
-(./relazione.bbl
-
-LaTeX Warning: Reference `LastBibItem' on page 2 undefined on input line 1.
-
-)
-
-Package natbib Warning: There were undefined citations.
-
-[2 <./img/tree_best.png>] (./relazione.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
+Package pdftex.def Info: img/tree_best.png  used on input line 82.
+(pdftex.def)             Requested size: 345.0pt x 232.30118pt.
+[2]
+No file relazione.bbl.
+[3 <./img/tree_best.png>] [4] (./relazione.aux)
 
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right .
-
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 4514 strings out of 492616
- 59451 string characters out of 6129482
- 148396 words of memory out of 5000000
- 8344 multiletter control sequences out of 15000+600000
- 19002 words of font info for 71 fonts, out of 8000000 for 9000
+ 1705 strings out of 492616
+ 23884 string characters out of 6129482
+ 89930 words of memory out of 5000000
+ 5595 multiletter control sequences out of 15000+600000
+ 16026 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,8n,29p,648b,250s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,5n,25p,648b,292s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
 usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
 sr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr
 /local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
-ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/t
-exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/tex
-live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texli
-ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive
-/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/
-2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/20
-19/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/201
-9/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on relazione.pdf (2 pages, 1249476 bytes).
+ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loc
+al/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local
+/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
+xlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texli
+ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/
+2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
+019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
+19/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb>
+Output written on relazione.pdf (4 pages, 1225614 bytes).
 PDF statistics:
- 74 PDF objects out of 1000 (max. 8388607)
- 52 compressed objects within 1 object stream
+ 76 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
