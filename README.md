@@ -4,5 +4,5 @@ Bioinformatics multi-class classification machine learning project developed by 
 
 ## Dataset
 
-Dataset used avaliable here:
-* [UC Irvine Machine Learning Repository](https://archive.ics.uci.edu/ml/machine-learning-databases/00401/) 
+Dataset used for the project (from UC Irvine Machine Learning Repository) avaliable here:
+* [gene expression cancer RNA-Seq Data Set](https://archive.ics.uci.edu/ml/machine-learning-databases/00401/) 
