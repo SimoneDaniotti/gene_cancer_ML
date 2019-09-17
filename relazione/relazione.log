@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.8.8)  17 SEP 2019 16:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.8.8)  17 SEP 2019 17:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -226,56 +226,7 @@ Class revtex4-1 Info: Robustifying \LaTeX's \boldmath command on input line 58.
 Class revtex4-1 Info: cite was not loaded (OK!) on input line 58.
 Class revtex4-1 Info: mcite was not loaded (OK!) on input line 58.
 Class revtex4-1 Info: multicol was not loaded (OK!) on input line 58.
- (./relazione.aux
-
-LaTeX Warning: Label `sec:level1' multiply defined.
-
-
-LaTeX Warning: Label `sec:level2' multiply defined.
-
-
-LaTeX Warning: Label `sec:level2' multiply defined.
-
-
-LaTeX Warning: Label `sec:level2' multiply defined.
-
-
-LaTeX Warning: Label `sec:level1' multiply defined.
-
-
-LaTeX Warning: Label `sec:level2' multiply defined.
-
-
-LaTeX Warning: Label `sec:level2' multiply defined.
-
-
-LaTeX Warning: Label `sec:level2' multiply defined.
-
-
-LaTeX Warning: Label `sec:level1' multiply defined.
-
-
-LaTeX Warning: Label `sec:level2' multiply defined.
-
-
-LaTeX Warning: Label `sec:level2' multiply defined.
-
-
-LaTeX Warning: Label `sec:level2' multiply defined.
-
-
-LaTeX Warning: Label `sec:level1' multiply defined.
-
-
-LaTeX Warning: Label `sec:level2' multiply defined.
-
-
-LaTeX Warning: Label `sec:level2' multiply defined.
-
-
-LaTeX Warning: Label `sec:level1' multiply defined.
-
-)
+ (./relazione.aux)
 \openout1 = `relazione.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
@@ -290,7 +241,8 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
 LaTeX Font Info:    ... okay on input line 58.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
 LaTeX Font Info:    ... okay on input line 58.
- (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+
+(/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count108
 \scratchdimen=\dimen115
@@ -371,6 +323,15 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 \openout4 = `relazione.toc'.
 
 
+
+Package natbib Warning: Citation `Dua:2019' on page 1 undefined on input line 1
+01.
+
+
+Package natbib Warning: Citation `weinstein2013cancer' on page 1 undefined on i
+nput line 102.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 101--103
 []\OT1/cmr/m/n/10 The dataset for this work is taken from
  []
@@ -413,38 +374,74 @@ Underfull \hbox (badness 10000) in paragraph at lines 124--125
 /cmr/m/n/10 ).
  []
 
-[1{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-(./relazione.bbl) [2] (./relazione.aux)
 
-LaTeX Warning: There were multiply-defined labels.
+Package natbib Warning: Citation `geron2017hands' on page 1 undefined on input 
+line 133.
+
+
+Package natbib Warning: Citation `bishop2006pattern' on page 1 undefined on inp
+ut line 133.
+
+
+Package natbib Warning: Citation `hertz1991introduction' on page 1 undefined on
+ input line 134.
+
+[1{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<img/tree_best.png, id=20, 7973.79pt x 5370.0625pt>
+File: img/tree_best.png Graphic file (type png)
+<use img/tree_best.png>
+Package pdftex.def Info: img/tree_best.png  used on input line 150.
+(pdftex.def)             Requested size: 246.0pt x 165.60164pt.
+
+(./relazione.bbl
+
+LaTeX Warning: Reference `LastBibItem' on page 2 undefined on input line 1.
+
+)
+
+Package natbib Warning: There were undefined citations.
+
+[2 <./img/tree_best.png>] (./relazione.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right .
+
 
  ) 
 Here is how much of TeX's memory you used:
- 4507 strings out of 492616
- 59353 string characters out of 6129482
- 147651 words of memory out of 5000000
- 8340 multiletter control sequences out of 15000+600000
+ 4514 strings out of 492616
+ 59451 string characters out of 6129482
+ 148396 words of memory out of 5000000
+ 8344 multiletter control sequences out of 15000+600000
  19002 words of font info for 71 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,8n,29p,556b,241s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><
-/usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></
-usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
-r/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loc
-al/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/
-texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/te
-xlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texliv
-e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive
-/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2
-019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/20
-19/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
-Output written on relazione.pdf (2 pages, 180436 bytes).
+ 41i,8n,29p,648b,250s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
+></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></
+usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></u
+sr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr
+/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
+ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loca
+l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/t
+exlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/tex
+live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texli
+ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive
+/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/
+2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/20
+19/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/201
+9/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb>
+Output written on relazione.pdf (2 pages, 1249476 bytes).
 PDF statistics:
- 67 PDF objects out of 1000 (max. 8388607)
- 48 compressed objects within 1 object stream
+ 74 PDF objects out of 1000 (max. 8388607)
+ 52 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
