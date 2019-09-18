@@ -9,14 +9,14 @@
 \BOOKMARK [2][-]{subsection.3.2}{Decision Tree Classifier and Random Forests}{section.3}% 9
 \BOOKMARK [2][-]{subsection.3.3}{Deep Learning}{section.3}% 10
 \BOOKMARK [3][-]{subsubsection.3.3.1}{PyTorch}{subsection.3.3}% 11
-\BOOKMARK [3][-]{subsubsection.3.3.2}{}{subsection.3.3}% 12
+\BOOKMARK [3][-]{subsubsection.3.3.2}{Keras}{subsection.3.3}% 12
 \BOOKMARK [1][-]{section.4}{Parameter optimization and Validation}{}% 13
 \BOOKMARK [2][-]{subsection.4.1}{Cross-Validation}{section.4}% 14
 \BOOKMARK [2][-]{subsection.4.2}{Grid Search CV \(and Random Search\)}{section.4}% 15
 \BOOKMARK [2][-]{subsection.4.3}{Architecture setting}{section.4}% 16
 \BOOKMARK [3][-]{subsubsection.4.3.1}{Parameters}{subsection.4.3}% 17
-\BOOKMARK [3][-]{subsubsection.4.3.2}{Optimizers}{subsection.4.3}% 18
-\BOOKMARK [3][-]{subsubsection.4.3.3}{Losses}{subsection.4.3}% 19
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Losses}{subsection.4.3}% 18
+\BOOKMARK [3][-]{subsubsection.4.3.3}{Optimizers}{subsection.4.3}% 19
 \BOOKMARK [1][-]{section.5}{Models Evaluation}{}% 20
 \BOOKMARK [2][-]{subsection.5.1}{PCA and Permutation Importance}{section.5}% 21
 \BOOKMARK [2][-]{subsection.5.2}{Metrics}{section.5}% 22
