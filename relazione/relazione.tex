@@ -5,6 +5,13 @@
 \usepackage{dcolumn}% Align table columns on decimal point
 \usepackage{bm}% bold math
 
+\usepackage{hyperref}%to have clickable links
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
 
 \title{Multi-class classification on gene expression data}
 \author[1]{Simone Daniotti}
@@ -30,7 +37,7 @@ Your abstract goes here...
 
 \section{Dataset description}
 
-The dataset for this work is taken from UCI Machine Learning Repo (available at $https://archive.ics.uci.edu/ml/datasets/gene+expression+cancer+RNA-Seq$) \cite{Dua:2019}; this is part of the RNA-Seq (HiSeq, a tool for measuring gene expression levels) PANCAN data set. It is a collection of gene expression levels of patients having different types of tumor: BRCA(breast), KIRC(kidney), COAD(colon), LUAD(lung) and PRAD(prostate).
+The dataset for this work is taken from UCI Machine Learning Repo (available at \url{https://archive.ics.uci.edu/ml/datasets/gene+expression+cancer+RNA-Seq}) \cite{Dua:2019}; this is part of the RNA-Seq (HiSeq, a tool for measuring gene expression levels) PANCAN data set. It is a collection of gene expression levels of patients having different types of tumor: BRCA(breast), KIRC(kidney), COAD(colon), LUAD(lung) and PRAD(prostate).
 These data represent the quantity of gene information used in the synthesis of a functional gene product. For further information, we refer to \cite{weinstein2013cancer}.
 
 
@@ -40,7 +47,7 @@ These data represent the quantity of gene information used in the synthesis of a
 
 
 \subsection{Preliminary manipulation}
-Both dataset and labels can be downloaded in a csv ('comma separated value') format, then can be easily imported in a Pandas Dataframe (https://pandas.pydata.org/). The first column represents patient's ID: it has been removed because it is useless for our purposes.
+Both dataset and labels can be downloaded in a csv ('comma separated value') format, then can be easily imported in a Pandas Dataframe (\url{https://pandas.pydata.org/}). The first column represents patient's ID: it has been removed because it is useless for our purposes.
 
 
 
@@ -53,7 +60,7 @@ One-hot encoding creates a single binary label for each class, changing the task
 
 \subsection{Train and Test Set}
 
-For training the net and then evaluating it, we split the dataset in training and test set using the Sklearn library $train\_test\_split$ ($https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html$). We set the seed of the random split and the proportions between the two sets: test set is $0.15$ of the entire database.
+For training the net and then evaluating it, we split the dataset in training and test set using the Sklearn library $train\_test\_split$ (\url{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html}). We set the seed of the random split and the proportions between the two sets: test set is $0.15$ of the entire database.
 
 \subsection{Class Weighting}
 
@@ -80,7 +87,7 @@ Each leaf of the tree corresponds to a possible classification label, so inserti
 \begin{figure}
 \centering
 \includegraphics[width=\linewidth]{img/tree_best.png}
-\caption{jnjcnkd}
+\caption{Shape of a tree classifier, with hyperparameters tuned by tecniques explained below.}
 \label{fig1}
 \end{figure}
 
@@ -92,7 +99,11 @@ The Random Forest algorithm introduces extra randomness when growing trees; inst
 
 \subsection{Deep Learning}
 
+\subsubsection{PyTorch}
 
+
+
+\subsubsection{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
