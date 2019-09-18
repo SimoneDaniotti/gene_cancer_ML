@@ -143,6 +143,43 @@ In general, but specially talking about deep neural networks, a user must define
 
 \subsubsection{Parameters}
 
+By using tecniques above considered, such as RandomSearchCV, we obtained some optimal parameters for every net, in particular:
+
+\begin{description}[align=left]
+\item [SVM:]
+\end{description}
+
+\begin{description}
+\item [Decision Tree:] \begin{itemize}
+\item the criterion for the splitting = 'gini';
+\item maximum depth for a tree = $5$;
+\item maximum number of leaf nodes =7
+\end{itemize}
+\end{description}
+
+\begin{description}
+\item[Random Forests:]\begin{itemize}
+\item the criterion for the splitting = 'entropy' (some of them are inherited from Trees)
+\item number of trees in the forest = 60;
+\item maximum number of leaf nodes = 50
+\item $bootstrap=True$ (NON CAPITO,CHIEDERE)
+\end{itemize}
+\end{description}
+                            
+\begin{description}
+\item [Deep Net:] It is a really simple fully connected linear deep neural network, composed by: \begin{itemize}
+\item input layer of the size of the training set features;
+\item $1_{st}$ hidden layer with 50 nodes;
+\item $2_{nd}$ hidden layer with 25 nodes;
+\item $3_{rd}$ hidden layer with 10 nodes;
+\item output layer with 5 nodes.
+\end{itemize}
+Between each layer has been applied a dropout of $20\%$  and a ReLU activation function. Moreover, the net has been trained for $300$ epochs, with a batch size of $16$ and a learning rate of $0.01$.
+\end{description}
+
+
+
+
 \subsubsection{Losses}
 
 Here we list some of the losses used during our work:
