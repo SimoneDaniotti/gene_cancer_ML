@@ -187,6 +187,7 @@ By using tecniques above considered, such as RandomSearchCV, we obtained some op
 
 \begin{description}
 \item [Decision Tree:] \begin{itemize}
+
 \item the criterion for the splitting = 'gini';
 \item maximum depth for a tree = $5$;
 \item maximum number of leaf nodes =7
@@ -195,6 +196,7 @@ By using tecniques above considered, such as RandomSearchCV, we obtained some op
 
 \begin{description}
 \item[Random Forests:]\begin{itemize}
+
 \item the criterion for the splitting = 'entropy' (some of them are inherited from Trees)
 \item number of trees in the forest = 60;
 \item maximum number of leaf nodes = 50
@@ -314,13 +316,27 @@ The resulting confusion matrix is:
 \label{mat_tree}
 \end{figure}
 
-\item For the optimal Decision Tree Classifier, we have and accuracy of $1.0 $, a hamming loss of $0.0$ and the model was trained in $2.37$ seconds.
+\item For the optimal Random Forest Classifier, we have and accuracy of $1.0 $, a hamming loss of $0.0$ and the model was trained in $2.37$ seconds. The resulting confusion matrix is:
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=\linewidth]{img/matrix_forest}
 \caption{Confusion matrix for the tuned random forest.}
-\label{mat_tree}
+\label{mat_forest}
+\end{figure}
+
+\item For the optimal Deep Network with label encoding and CrossEntropyLoss, the model was trained in $21.72$ seconds ending with a CrossEntropyLoss of $0.0000006407485102499777$. The resulting confusion matrix is:
+
+
+\item For the optimal Deep Network with One-hot Encoding and BCEWithLogitsLoss, the model was trained in $21.21$ seconds ending with a BCEWithLogitsLoss of $0.0054287840612232685$. The resulting confusion matrix is:
+
+
+\begin{figure}[hbt]
+\centering
+\includegraphics[width=0.49\textwidth]{img/matrix_py_enc}
+\includegraphics[width=0.49\textwidth]{img/matrix_py_hot}
+\caption{On the left: Confusion matrix for the Pytorch Deep Neural Network, with label encoding. On the right: Confusion matrix for the Pytorch Deep Neural Network, with one-hot encoded labels.}
+\label{fig_torch}
 \end{figure}
 
 
