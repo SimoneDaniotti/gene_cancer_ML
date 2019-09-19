@@ -284,7 +284,7 @@ This mechanism is iterated for every feature. For example, let's apply this to a
 \label{fig_perm}
 \end{figure}
 
-We could imagine that only coloured genes were responsible for predictions, so we tried to train a Decision Tree Classifier keeping only those genes. The results are:
+We could imagine that only coloured genes were responsible for predictions, so we tried to train a Decision Tree Classifier keeping only those genes. This considerably reduces feature dimensionality, from $20530$ to $6$.The results are:
 
 \begin{figure}[h!]
 \centering
@@ -298,6 +298,22 @@ We could imagine that only coloured genes were responsible for predictions, so w
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Metrics}
+During our analysis we used a variety of losses and metrics, for example the already explained Accuracy or the Hamming Loss, which is the fraction of labels that are incorrectly predicted.
+Talking about those metrics, we think they are not truly a good measure for nets performances in case of unbalanced classes.
+A more precise measure, and the metric we used more often during our work, is the Confusion Matrix.
+Having the true labels as rows and predictions as columns, it presents the number of right classifications on the principal diagonal, and the sum of mis-classifications off-diagonal. 
+Let's recap our results:
+\begin{itemize}
+\item For the optimal Decision Tree Classifier, we have and accuracy of $0.9917355371900827 $, a hamming loss of $0.008264462809917356 $ and the model was trained in $3.73$ seconds.
+The resulting confusion matrix is:
+\begin{figure}[h!]
+\centering
+\includegraphics[width=\linewidth]{img/matrix_tree}
+\caption{Confusion matrix for the tuned tree classifier.}
+\label{mat_tree}
+\end{figure}
+
+\end{itemize}
 
 
 
