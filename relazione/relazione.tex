@@ -15,6 +15,14 @@
     urlcolor=cyan,
 }
 
+%\usepackage{geometry}
+ 
+% \geometry{a4paper,total={170mm,257mm},left=25mm, top=25mm, }
+
+\usepackage{afterpage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \title{Multi-class classification on gene expression data}
 \author[1]{Simone Daniotti}
 \author[2]{Riccardo Castelli}
@@ -25,21 +33,28 @@
 \setcounter{Maxaffil}{0}
 \renewcommand\Affilfont{\itshape\small}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
 
   \maketitle
   
-  
+
 \begin{abstract}
 Your abstract goes here...
 ...
 \end{abstract}
 
+
+
 \tableofcontents
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 \section{Dataset description}
 
@@ -200,8 +215,7 @@ By using tecniques above considered, such as RandomSearchCV, we obtained some op
 \item the criterion for the splitting = 'entropy' (some of them are inherited from Trees)
 \item number of trees in the forest = 60;
 \item maximum number of leaf nodes = 50
-\item $bootstrap=True$ (NON CAPITO,CHIEDERE)
-\end{itemize}
+\item bootstrap samples are used when building trees. If wasn't like that, the whole datset is used to build each tree.\end{itemize}
 \end{description}
                             
 \begin{description}
@@ -333,8 +347,10 @@ The resulting confusion matrix is:
 
 \begin{figure}[hbt]
 \centering
-\includegraphics[width=0.49\textwidth]{img/matrix_py_enc}
-\includegraphics[width=0.49\textwidth]{img/matrix_py_hot}
+\advance\leftskip-4cm
+\advance\rightskip-4cm
+\includegraphics[width=0.7\textwidth]{img/matrix_py_enc}
+\includegraphics[width=0.7\textwidth]{img/matrix_py_hot}
 \caption{On the left: Confusion matrix for the Pytorch Deep Neural Network, with label encoding. On the right: Confusion matrix for the Pytorch Deep Neural Network, with one-hot encoded labels.}
 \label{fig_torch}
 \end{figure}
