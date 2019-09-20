@@ -290,12 +290,26 @@ Gradient Descent, one of the most famous and used optimization algorithms, works
 The traditional algorithm needs to see the whole dataset in order to perform a parameter update, and this can lead to very slow computational times, so from this original idea it has been developed the Stochastic Gradient Descent, that updates the parameter for each training example, but since this approach can lead to fluctuations and difficulties in the convergence, an additional improvement named Mini Batch Gradient Descent was developed, which solves a lot of issues related to GD and SGD performing a parameter update for every batch, a subset of training examples that we can decide the size of. 
 For our model we implemented Mini Batch Gradient Descent, that takes as parameters the learning rate, which is variable through the decay rate, the Momentum (which accelerates the movement towards relevant directions) and the Nesterov (which makes the SGD perform the updates based on the previous momentum, in order to try to prevent to jump over minima due to the extreme acceleration of the descent).  
 The formula is the following:
-FORMULA SGD
+\textit{For every mini batch of size n, repeat until convergence}
+
+\begin{align*}
+\nu_{j}  \gets \eta  *  \nu_{j} - \alpha \nabla_{w} \sum_{1}^{m} L_{m}(w), \\
+w_{j} \gets  \nu_{j} + w_{j}
+\end{align*}
 
 Although we obtained very good result using this version of the SGD, we also decided to use another optimizer to compare the results. We chose to use Adam, a technique derived both form the idea of Momentum and another optimization algorithm called RMSProp. 
 While RMSProp tries to dampen oscillations by updating each parameter separately and choosing for each one a different learning rate computed using the exponential average of squares of gradients, Adam uses in addition the exponential average of gradients, keeping also two constants named beta1 and beta2 to control the decay rates of these two moving averages. 
 The formula is the following:
-FORMULA ADAM
+
+\textit{For each parameter $w^{j}$}
+
+\begin{align*}\nu_{t}  = \beta_{1}  *  \nu_{t-1} - (1 - \beta_{1}) *g_{t} \\
+s_{t} =  \beta_{2} * s_{t-1} - (1-\beta_{2}) * g_{t}^2\\
+\Delta w_{t} = -\eta \frac{\nu_{t}}{\sqrt{s_{t} + \epsilon}}* g_{t}\\
+w_{t+1} = w_{t} + \Delta w_{t},
+\end{align*}
+
+where $\eta$ is the initial learning rate, $g_{t}$ is the gradient at time t along $w^{j}$, $\nu_{t}$ is the exponential average of gradients along $w_{j}$, $s_{t}$ is the exponential average of squares of gradients along $w_{j}$, $\beta_{1},\beta_{2}$ are hyperparameters.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
