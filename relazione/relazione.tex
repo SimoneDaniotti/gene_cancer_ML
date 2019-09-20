@@ -48,7 +48,7 @@ Your abstract goes here...
 
 
 \tableofcontents
-
+\newpage
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -93,8 +93,8 @@ For training the net and then evaluating it, we split the dataset in training an
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Class Weighting}
-
-
+Since our dataset is unbalanced, we chose to utilise the $class\_weight$ parameter (present in almost every classifier) to handle this problem. This parameter can be defined as a dictionary that maps each class in the dataset with its respective weight; weights can be computed using Scikit-learn method compute class weight in the $class\_weight$ library, which assigns greater values to the less represented classes. Through this parameter, the classifier is aware of the fact that some classes are more represented than others and gives the examples different importance during the training step.
+%(https://scikit-learn.org/stable/modules/generated/sklearn.utils.class_weight.compute_class_weight.html)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -107,6 +107,12 @@ There are lots of books reviewing these architectures and concepts. Here we refe
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Support Vector Machines (SVM)}
+Another approach that we used to create a model that well classifies our dataset is the Support Vector Machines (or SVM in short). Both a binary and a multi-class classifier, SVM tries to find the hyperplane, called decision boundary, that best separates the data. The optimal hyperplane is chosen by the use of the so called “support vectors”, which are the samples of each class closest to the hyperplane. The distance between the support vectors is called margin, and the goal of the SVM is to maximise this margin in order to get a good separation between the classes in a way that also guarantees a good generalisation. 
+SVM are particularly effective in high dimensional spaces, even when the number of features is greater than the number of samples; as this fact fits very well with the properties of our dataset, we decided to experiment the classification with this kind of model to see the results. 
+For the implementation, we utilised Scikit-learn SVC class from the svm library: for multi-class classification, it uses a “one-against-one” approach, creating $[n_class*(n\_class-1)/2]$ classifiers and train each of them with two classes. We considered three parameters for our model: C, kernel and $class\_weights$. 
+C is called the ‘soft margin constant’: we can describe it as a measure of tolerance regarding the misclassification of the data, the more the C increases, the less amount of misclassified points the model will tolerate, and during the training process it will try find a trade-off between the maximisation of the margin and the minimisation of the misclassification. 
+Kernel are used by the SVM to apply transformations to the data in order to project them in a higher dimensional space where they are more likely to be separable; this method, called the “kernel trick” is used to find non-linear decision boundaries. 
+The parameter $class\_weights$ is used to make the SVM aware that the dataset is unbalanced. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -154,6 +160,12 @@ All further documentation can be found here: \url{https://pytorch.org/}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Keras}
+Keras is a Python high-level machine learning library capable of running on top of multiple back-ends (such as TensorFlow, Theano, CNTK and many more), taking advantage of their power but putting aside their complexity. In fact, Keras allows the user to build deep learning models through a long list of modules that can be selected and combined in a very easy to use manner, which does not however comes at the expenses of the flexibility of the back-end frameworks and does not limit the user during the development and implementation process. 
+The main Keras model is the Sequential, which is a linear stack of layers. The construction of the model requires three main phases: adding layers, compile the model and train it. 
+In the first phase we can add an arbitrary number of layers using the add function. There is a consistent number of type of layers that can be selected, for example, in our model, we chose to use 3 Dense (that is fully-connected) layers and 3 Dropout layers for regularization purposes. 
+The second phase is where the model is compiled through the compile function; the function needs the optimizer, the loss function and the metrics of evaluation to be specified. 
+The third and last phase is the training of the model: Keras uses the fit function for this purpose, to which we have to pass for example (other than the training examples and labels) the batch size, the epochs and the class weights. 
+After the model has been built and trained, it can be evaluated on the test set using Keras’ method evaluate.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -198,11 +210,15 @@ By using tecniques above considered, such as RandomSearchCV, we obtained some op
 
 \begin{description}[align=left]
 \item [SVM:]
+\begin{itemize}
+\item C = 10;
+\item kernel= linear;
+\end{itemize}
 \end{description}
 
 \begin{description}
-\item [Decision Tree:] \begin{itemize}
-
+\item [Decision Tree:] 
+\begin{itemize}
 \item the criterion for the splitting = 'gini';
 \item maximum depth for a tree = $5$;
 \item maximum number of leaf nodes =7
@@ -269,8 +285,17 @@ Documentation in the link above;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Optimizers}
+Optimization algorithms are used to minimise the loss function, in order to find optimum values for our learnable model’s parameter. During our neural network design and implementation we focused particularly on two main optimization techniques: Gradient Descent and Adam. 
+Gradient Descent, one of the most famous and used optimization algorithms, works as follows: on each iteration, the algorithm computes the gradient of the loss function for the current weights values and updates them by an arbitrary percent (that we are able to choose by a parameter called learning rate); this procedure goes on util a stopping criterion is satisfied. 
+The traditional algorithm needs to see the whole dataset in order to perform a parameter update, and this can lead to very slow computational times, so from this original idea it has been developed the Stochastic Gradient Descent, that updates the parameter for each training example, but since this approach can lead to fluctuations and difficulties in the convergence, an additional improvement named Mini Batch Gradient Descent was developed, which solves a lot of issues related to GD and SGD performing a parameter update for every batch, a subset of training examples that we can decide the size of. 
+For our model we implemented Mini Batch Gradient Descent, that takes as parameters the learning rate, which is variable through the decay rate, the Momentum (which accelerates the movement towards relevant directions) and the Nesterov (which makes the SGD perform the updates based on the previous momentum, in order to try to prevent to jump over minima due to the extreme acceleration of the descent).  
+The formula is the following:
+FORMULA SGD
 
-
+Although we obtained very good result using this version of the SGD, we also decided to use another optimizer to compare the results. We chose to use Adam, a technique derived both form the idea of Momentum and another optimization algorithm called RMSProp. 
+While RMSProp tries to dampen oscillations by updating each parameter separately and choosing for each one a different learning rate computed using the exponential average of squares of gradients, Adam uses in addition the exponential average of gradients, keeping also two constants named beta1 and beta2 to control the decay rates of these two moving averages. 
+The formula is the following:
+FORMULA ADAM
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
