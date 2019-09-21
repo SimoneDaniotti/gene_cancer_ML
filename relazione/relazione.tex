@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage{authblk}
 
 \usepackage{graphicx}% Include figure files
@@ -6,6 +6,7 @@
 \usepackage{amsmath,amssymb}
 \usepackage{bm}% bold math
 \usepackage{enumitem}
+\usepackage{float}
 
 \usepackage{hyperref}%to have clickable links
 \hypersetup{
@@ -20,8 +21,7 @@
 % \geometry{a4paper,total={170mm,257mm},left=25mm, top=25mm, }
 
 \usepackage{afterpage}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength\parindent{0pt}
 
 \title{Multi-class classification on gene expression data}
 \author[1]{Simone Daniotti}
@@ -33,11 +33,10 @@
 \setcounter{Maxaffil}{0}
 \renewcommand\Affilfont{\itshape\small}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
-  \maketitle
+ \maketitle
   
 
 \begin{abstract}
@@ -51,213 +50,120 @@ Your abstract goes here...
 \newpage
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
 \section{Dataset description}
 
-The dataset for this work is taken from UCI Machine Learning Repo (available at \url{https://archive.ics.uci.edu/ml/datasets/gene+expression+cancer+RNA-Seq}) \cite{Dua:2019}; this is part of the RNA-Seq (HiSeq, a tool for measuring gene expression levels) PANCAN data set. It is a collection of gene expression levels of patients having different types of tumor: BRCA(breast), KIRC(kidney), COAD(colon), LUAD(lung) and PRAD(prostate).
-These data represent the quantity of gene information used in the synthesis of a functional gene product. For further information, we refer to \cite{weinstein2013cancer}.
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+The dataset for this work is taken from UCI Machine Learning Repo (available at \url{https://archive.ics.uci.edu/ml/datasets/gene+expression+cancer+RNA-Seq}) \cite{Dua:2019}, and it is part of the RNA-Seq (HiSeq, a tool for measuring gene expression levels) PANCAN dataset. The dataset is a collection of gene expression levels of patients having different types of tumor: BRCA (breast), KIRC (kidney), COAD (colon), LUAD (lung) and PRAD (prostate).
+These data represent the quantity of gene information used in the synthesis of a functional gene product. 
+% For further information, we refer to \cite{weinstein2013cancer}.
 
 
 \section{Dataset Manipulation}
 
 
 \subsection{Preliminary manipulation}
-Both dataset and labels can be downloaded in a csv ('comma separated value') format, then can be easily imported in a Pandas Dataframe (\url{https://pandas.pydata.org/}). The first column represents patient's ID: it has been removed because it is useless for our purposes.
+Both dataset and labels can be downloaded in a .csv ('comma separated value') format, that then can be easily imported into a Pandas Dataframe (\url{https://pandas.pydata.org/}). The first column, which represents the patient's ID has been removed as it is useless for our purposes.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Label handling}
-The labels are strings representing the five types of cancer. Learning models can be created using raw features(in the case of trees and forests), using Label Encoding or One-hot Encoding.
-Label Encoding creates a map between the string and an ordered sequence of natural numbers, from 0 to 4 in our case.
-One-hot encoding creates a single binary label for each class, changing the task of the learning model to a multi-label problem.
+The labels are strings representing the five types of cancer. Learning models can be created using raw features, as in the case of trees and forests, Label Encoding or One-Hot Encoding.
+Label Encoding creates a map between the strings representing the categories and an ordered sequence of natural numbers, in our case from 0 to 4.
+One-Hot Encoding creates a single binary label for each class, where the only 1 present in the vector represents the index of the class the example is associated with.  
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Normalization}
+We normalized our dataset using the $normalize$ method present in Scikit-learn library $preprocessing$: this method scales vectors individually to unit norm. 
 
 
 \subsection{Train and Test Set}
 
-For training the net and then evaluating it, we split the dataset in training and test set using the Sklearn library $train\_test\_split$ (\url{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html}). We set the seed of the random split and the proportions between the two sets: test set is $0.15$ of the entire database.
+For training the models and evaluate them, we split the dataset into training and test set using the Scikit-learn method $train\_test\_split$ (\url{https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html}) from the $model\_selection$ library. Here we set the seed of the random split (for reproducibility purposes) and the proportions between the two sets: test set is the 15\% of our entire examples.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Class Weighting}
-Since our dataset is unbalanced, we chose to utilise the $class\_weight$ parameter (present in almost every classifier) to handle this problem. This parameter can be defined as a dictionary that maps each class in the dataset with its respective weight; weights can be computed using Scikit-learn method compute class weight in the $class\_weight$ library, which assigns greater values to the less represented classes. Through this parameter, the classifier is aware of the fact that some classes are more represented than others and gives the examples different importance during the training step.
+Since our dataset is unbalanced, we chose to handle this problem using $class\_weight$ parameter (which is present in almost every classifier). This parameter can be defined as a dictionary that maps each class in the dataset with its respective weight; weights can be computed using Scikit-learn method $compute\_class\_weight$ in the $class\_weight$ library, which assigns greater values to the less represented classes. Through this parameter, the classifier is aware of the fact that some classes are more represented than others and gives the examples different importance during the training step.
 %(https://scikit-learn.org/stable/modules/generated/sklearn.utils.class_weight.compute_class_weight.html)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Architectures}
-There are lots of books reviewing these architectures and concepts. Here we refer to \cite{geron2017hands} , \cite{bishop2006pattern} \cite{hertz1991introduction}.
+\section{Models}
+%There are lots of books reviewing these architectures and concepts. Here we refer to \cite{geron2017hands} , \cite{bishop2006pattern} \cite{hertz1991introduction}.
+We thought it could be a useful idea to approach our problem with models with a relative simple high-level implementation (such as the Decision Trees, Random Forests and Support Vector Machines) and after their evaluation deepen in more complex ones (such as the Neural Networks). 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Support Vector Machines (SVM)}
-Another approach that we used to create a model that well classifies our dataset is the Support Vector Machines (or SVM in short). Both a binary and a multi-class classifier, SVM tries to find the hyperplane, called decision boundary, that best separates the data. The optimal hyperplane is chosen by the use of the so called “support vectors”, which are the samples of each class closest to the hyperplane. The distance between the support vectors is called margin, and the goal of the SVM is to maximise this margin in order to get a good separation between the classes in a way that also guarantees a good generalisation. 
-SVM are particularly effective in high dimensional spaces, even when the number of features is greater than the number of samples; as this fact fits very well with the properties of our dataset, we decided to experiment the classification with this kind of model to see the results. 
-For the implementation, we utilised Scikit-learn SVC class from the svm library: for multi-class classification, it uses a “one-against-one” approach, creating $[n_class*(n\_class-1)/2]$ classifiers and train each of them with two classes. We considered three parameters for our model: C, kernel and $class\_weights$. 
-C is called the ‘soft margin constant’: we can describe it as a measure of tolerance regarding the misclassification of the data, the more the C increases, the less amount of misclassified points the model will tolerate, and during the training process it will try find a trade-off between the maximisation of the margin and the minimisation of the misclassification. 
-Kernel are used by the SVM to apply transformations to the data in order to project them in a higher dimensional space where they are more likely to be separable; this method, called the “kernel trick” is used to find non-linear decision boundaries. 
-The parameter $class\_weights$ is used to make the SVM aware that the dataset is unbalanced. 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Decision Tree Classifier and Random Forests}
 
-Decision Trees are versatile Machine Learning algorithms that can perform both classification and regression tasks, and even multioutput tasks. They are particularly useful in treating with complex data, such as a dataset that can hardly be represented by a vector in a multi-dimensional space: this is not our case, but we think it is useful to approach our problem with more simple models and evaluating them before \textit{deeping} in more difficult models.
-Tree Classifiers have the structure of an \textit{ordered and rooted tree}. It is \textit{ordered} because the children of any internal node are numbered consecutively, and \textit{rooted} because splitting starts from only one node.
+Decision Trees are versatile Machine Learning algorithms that can perform both classification and regression tasks, and even multi-output tasks. They are particularly useful for treating with complex data, such as a dataset that can hardly be represented by a vector in a multi-dimensional space.
+Tree Classifiers have the structure of an ordered and rooted tree. It is ordered because the children of any internal node are numbered consecutively, and rooted because the splitting starts from only one node.
 From that node, the model is built following the attribute selection measure.
-Attribute selection measure is a heuristic for selecting the splitting criterion that partition data into the best possible manner.
+Attribute selection measure is a heuristic for selecting the splitting criterion that partitions data in the best possible manner.
+
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=\linewidth]{img/tree_best.png}
-\caption{Shape of a tree classifier, with hyperparameters tuned by tecniques explained below.}
+\caption{Shape of a tree classifier with tuned hyperparameters}
 \label{fig1}
 \end{figure}
 
 
-Scikit-Learn uses the \textit{Classification And Regression Tree (CART) algorithm} to train Decision Trees.It works as follows: it first splits the training set in two subsets using a single feature k and a threshold $t_k$ . How does it choose $k$ and $t_k$? It searches for the pair $(k, t_k)$ that produces the purest subsets. The cost functions that the algorithm tries to minimize are different: most used are \textit{Gini Impurity} and \textit{Entropy}, tunable in Scikit-learn by the hyperparameter \textit{criterion}. Entropy hyperparameter measures Shannon's Entropy, a concept taken from information theory.
-Each leaf of the tree corresponds to a possible classification label, so inserting datas of a patient from the root, the model $spits$ its classification. This can be a modality for building a predictor.
+Scikit-learn uses the Classification And Regression Tree (CART) algorithm to train Decision Trees. It works as follows: it firstly splits the training set in two subsets using a single feature $k$ and a threshold $t_k$ ; to choose $k$ and $t_k$, it searches for the pair $(k, t_k)$ that produces the purest subsets. The cost functions that the algorithm tries to minimize are different: the most used are Gini Impurity and Entropy, which are tunable in Scikit-learn by the $criterion$ hyperparameter; the $entropy$ hyperparameter measures Shannon's Entropy, a concept taken from the Information Theory. After the first split, the algorithm goes on until a stopping criterion is satisfied (for example the error is minimized). Each leaf of the tree corresponds to a possible classification label.
+
+The aggregation of a group of predictors (regulated by certain rules, such as a majority rule) will often get better results than the best individual one. A group of predictors is called an ensemble, thus, this technique is called Ensemble Learning and an ensemble learning algorithm is called an ensemble method.
+Training a group of Decision Tree Classifiers and gathering them into one single predictor is called a Random Forest.
+The Random Forest algorithm introduces extra randomness when growing trees: instead of searching for the very best feature when splitting a node (as in the tree case), it searches for the best feature among a random subset of features, resulting in a greater tree diversity.
 
 
-If you aggregate the predictions of a group of predictors (regulated by certain rules, such as majority rule..), you will often get better predictions than with the best individual predictor. A group of predictors is called an \textit{ensemble}; thus, this technique is called \textit{Ensemble Learning}, and an Ensemble Learning algorithm is called an \textit{Ensemble method}.
-Training a group of Decision Tree Classifiers and gathering into one single predictor is called a \textit{Random Forest}.
-The Random Forest algorithm introduces extra randomness when growing trees; instead of searching for the very best feature when splitting a node (as in the tree case), it searches for the best feature among a random subset of features. This results in a greater tree diversity.
+\subsection{Support Vector Machines (SVM)}
+Another approach that we used to create a model that well classifies our dataset is the Support Vector Machines (SVM in short). Both a binary and a multi-class classifier, SVM tries to find the hyperplane (called decision boundary) that best separates the data. The optimal hyperplane is chosen by the use of the so called $support vectors$, which are the samples of each class closest to the hyperplane. The distance between the support vectors is called $margin$, and the goal of the SVM is to maximise this margin in order to get a good separation of the classes in a way that also guarantees a good generalisation. 
+SVM are particularly effective in high dimensional spaces, even when the number of features is greater than the number of samples: as this fact fits very well with the properties of our dataset, we decided to experiment the classification with this kind of model to see the results. \\
+For the implementation, we utilised Scikit-learn SVC class from the svm library: for multi-class classification, it uses a “one-against-one” approach, creating $n\_class*(n\_class-1)/2$ (where $n\_class$ is the number of classes) classifiers and train each of them with two classes. \\
+We considered three parameters for our model: $C$, $kernel$ and $class\_weights$. 
+$C$ is called the ‘soft margin constant’: we can describe it as a measure of tolerance regarding the misclassification of the data, the more the C increases, the less amount of misclassified points the model will tolerate, giving them a huge penalty. During the training process, the model will try find a trade-off between the maximisation of the margin and the minimisation of the misclassification. 
+$Kernel$ is used by the SVM to apply transformations to the data in order to project them in a higher dimensional space where they are more likely to be separable; this method, called the “kernel trick” is used to find non-linear decision boundaries. \\
+The parameter $class\_weights$ is used to make the SVM aware that the dataset is unbalanced. 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Deep Learning}
-
-PARTE MANCANTE, DA FARE IN SEGUITO
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{PyTorch}
-
-PyTorch is a Python machine learning framework. It is built for creating learning algorithms based on graph models. 
-It starts as a low-level library, but has a lot of high-level APIs for building big deep neural network in a bunch of code lines.
-Its core element are Pytorch tensors, in the same way arrays are for Numpy, but are build to take advantage of GPU computing in an easy way.
-Transition between low-level programming and APIs is truly continuous: this is a very important feature in building and tweaking a Deep Neural Network.
-In depth, it has some useful built-in methods to handle training and evaluation, for example: autograd() to compute gradients and DataLoader() to handle training and batch loading.
-All further documentation can be found here: \url{https://pytorch.org/}.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Moving to more complex models, we decided to implement a Deep Neural Network using Keras and Pytorch. In this section we will discuss about the peculiarity of these libraries and in the following we will provide the characteristics of our model, presenting his architecture and the losses and the optimizers we used.   
 
 \subsubsection{Keras}
 Keras is a Python high-level machine learning library capable of running on top of multiple back-ends (such as TensorFlow, Theano, CNTK and many more), taking advantage of their power but putting aside their complexity. In fact, Keras allows the user to build deep learning models through a long list of modules that can be selected and combined in a very easy to use manner, which does not however comes at the expenses of the flexibility of the back-end frameworks and does not limit the user during the development and implementation process. 
 The main Keras model is the Sequential, which is a linear stack of layers. The construction of the model requires three main phases: adding layers, compile the model and train it. 
-In the first phase we can add an arbitrary number of layers using the add function. There is a consistent number of type of layers that can be selected, for example, in our model, we chose to use 3 Dense (that is fully-connected) layers and 3 Dropout layers for regularization purposes. 
-The second phase is where the model is compiled through the compile function; the function needs the optimizer, the loss function and the metrics of evaluation to be specified. 
-The third and last phase is the training of the model: Keras uses the fit function for this purpose, to which we have to pass for example (other than the training examples and labels) the batch size, the epochs and the class weights. 
-After the model has been built and trained, it can be evaluated on the test set using Keras’ method evaluate.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+In the first phase we can add an arbitrary number of layers using the $add$ function. There is a consistent number of type of layers that can be selected, for example, in our model, we chose to use 3 Dense (that is fully-connected) layers and 3 Dropout layers for regularization purposes. 
+The second phase is where the model is compiled through the $compile$ function; this function needs the optimizer, the loss function and the metrics of evaluation to be specified. 
+The third and last phase is the training of the model: Keras uses the $fit$ function for this purpose, to which we have to pass for example (other than the training examples and labels) the batch size, the epochs and the class weights. 
+After the model has been built and trained, it can be evaluated on the test set using Keras’ method $evaluate$.
 
 
-\section{Parameter optimization and Validation}
+\subsubsection{PyTorch}
+PyTorch is a Python machine learning library, built to create learning algorithms based on graph models. 
+It starts at low-level, but it has a lot of high-level APIs that allow to create even complex neural networks with a very few lines of code.
+Its core element are Pytorch tensors, in the same way arrays are for Numpy, but built to take advantage of GPU computing.
+The transition between low-level programming and APIs is truly continuous, which is a very important feature when it comes to build and tune a deep neural network.
+In depth, PyTorch has some useful built-in methods to handle training and evaluation, for example $autograd$ to compute gradients and $DataLoader$ to handle training and batch loading.
 
-Once having built the net, a user must ensure that the model has a good generalizing capacity. Often, a too fitted net fails to predict in test set, in a sense longly described in the books cited above; this behaviour is called \textit{overfitting}.
-In the sections below, we will review some of the tecniques used to avoid this feature and some characteristics of the models we studied.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Neural network architecture, losses and optimizers}
 
-\subsection{Cross-Validation}
 
-One may desire a tecnique to evaluate generalization performances before testing the net. An idea could be to split again the training set, and using a part of it to test performances: this is called \textit{cross-validation}.
-Scikit-Learn offers a great method to reach this task. Lets explain what is sklean's K-fold cross-validation: it randomly splits the training set into $k$ distinct subsets called \textit{folds}, then it trains and evaluates the model $k$ times, picking a different fold for evaluation every time and training on the other $k-1$ folds.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Architecture}
+Our model is a fully connected linear deep neural network, composed by:
 
-\subsection{Grid Search CV (and Random Search)}
-Tweaking hyperparameters for each algorithm, one can see that some of them influence overfitting more than others: selecting the right parameters is a tedious job if one does it by hand.
-Instead,one can use for example Scikit-Learn’s GridSearchCV. Passing to the function all values of some hyperparameters to evaluate, it will estimate all the possible combinations of them, using cross-validation. 
-
-The grid search approach is fine when you are exploring relatively few combinations but when the hyperparameter search space is large, it is often preferable to use RandomizedSearchCV instead. This class is similar to grid search, but it evaluates random values for every parameter passed, taken from a probability distribution for each.
-It is useful to explore larger parts of hyperparameter search space and to lighten computation.
-
-Both functions were used, giving similar results in term of net performances.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Architecture setting}
-In general, but specially talking about deep neural networks, a user must define what parameters influence performances, how to evaluate net mistakes and how to improve model's predictions.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsubsection{Parameters}
-
-By using tecniques above considered, such as RandomSearchCV, we obtained some optimal parameters for every net, in particular:
-
-\begin{description}[align=left]
-\item [SVM:]
 \begin{itemize}
-\item C = 10;
-\item kernel= linear;
-\end{itemize}
-\end{description}
-
-\begin{description}
-\item [Decision Tree:] 
-\begin{itemize}
-\item the criterion for the splitting = 'gini';
-\item maximum depth for a tree = $5$;
-\item maximum number of leaf nodes =7
-\end{itemize}
-\end{description}
-
-\begin{description}
-\item[Random Forests:]\begin{itemize}
-
-\item the criterion for the splitting = 'entropy' (some of them are inherited from Trees)
-\item number of trees in the forest = 60;
-\item maximum number of leaf nodes = 50
-\item bootstrap samples are used when building trees. If wasn't like that, the whole datset is used to build each tree.\end{itemize}
-\end{description}
-                            
-\begin{description}
-\item [Deep Net:] It is a really simple fully connected linear deep neural network, composed by: \begin{itemize}
-\item input layer of the size of the training set features;
+\item an input layer of the size of the training set features;
 \item $1_{st}$ hidden layer with 50 nodes;
 \item $2_{nd}$ hidden layer with 25 nodes;
 \item $3_{rd}$ hidden layer with 10 nodes;
-\item output layer with 5 nodes.
+\item an output layer with 5 nodes.
 \end{itemize}
-Between each layer has been applied a dropout of $20\%$  and a ReLU activation function. Moreover, the net has been trained for $300$ epochs, with a batch size of $16$ and a learning rate of $0.01$.
-\end{description}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Between each layer has been applied a dropout of $20\%$ (during the weight update in the training step each neuron can be ignored with a probability of 0.2) and a ReLU activation function. Moreover, the net has been trained for 300 epochs, with a batch size of 16.
 
 
 \subsubsection{Losses}
-
-Here we list some of the losses used during our work:
+Here we list the losses used during our work:
 
 \begin{description}[align=left]
 
-\item [Accuracy:] In multi-label and multi-class problems, this is a discrete measure of predictions, in the sense that results scores only when predition is exact (\url{https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics});
-
-\item [BCEWithLogitsLoss:] This loss combines a Sigmoid layer and the BCELoss in one single class. This version is more numerically stable than using a plain Sigmoid followed by a BCELoss as, by combining the operations into one layer, we take advantage of the log-sum-exp trick for numerical stability. The equation for the loss is:
+\item [BCEWithLogitsLoss:] This loss combines in one single class both a Sigmoid layer and the BCELoss. This version is more numerically stable than using a plain Sigmoid followed by a BCELoss as, by combining the operations into one layer, we take advantage of the log-sum-exp trick for numerical stability. The equation of the loss is the following:
 
 \begin{equation}
 loss(x,y) = \mathbb{E} \left[ \{ l_1,....,l_N\} ^\top \right] , 
@@ -267,153 +173,189 @@ where
 l_{n} = - w_{n} \left[ y_{n}  \log[\sigma(x_{n}) + (1-y_{n})  \log(1 - \sigma(x_{n})) \right]
 \end{equation}
 
-
-For further explanations and implementation, visit \url{https://pytorch.org/docs/stable/nn.html};
-
-\item [CrossEntropyLoss:] This criterion combines nn.LogSoftmax() and nn.NLLLoss() in one single class. This criterion expects a class index in the range $[0,C-1]$ as the target for each value of a $1D$ tensor of size minibatch. The equation for the loss is the following:
+\item [CrossEntropyLoss:] This criterion combines a $LogSoftmax$ and $NLLLoss$ in one single class. This criterion expects as the target of each value of the minibatch-sized 1D tensor a class index in the range [0,C-1]. The equation of the loss is the following:
 
 \begin{equation}
-loss(x,class) = - \log\left(\frac{exp(x[class])}{\sum_{j}{exp(x[j])}}\right)
+loss(x,class) = - \log\left(\frac{\exp(x[class])}{\sum_{j}{\exp(x[j])}}\right)
 \end{equation}
-
-Documentation in the link above;
-
-\item[LOSS DI KERAS]
 
 \end{description}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{Optimizers}
-Optimization algorithms are used to minimise the loss function, in order to find optimum values for our learnable model’s parameter. During our neural network design and implementation we focused particularly on two main optimization techniques: Gradient Descent and Adam. 
-Gradient Descent, one of the most famous and used optimization algorithms, works as follows: on each iteration, the algorithm computes the gradient of the loss function for the current weights values and updates them by an arbitrary percent (that we are able to choose by a parameter called learning rate); this procedure goes on util a stopping criterion is satisfied. 
-The traditional algorithm needs to see the whole dataset in order to perform a parameter update, and this can lead to very slow computational times, so from this original idea it has been developed the Stochastic Gradient Descent, that updates the parameter for each training example, but since this approach can lead to fluctuations and difficulties in the convergence, an additional improvement named Mini Batch Gradient Descent was developed, which solves a lot of issues related to GD and SGD performing a parameter update for every batch, a subset of training examples that we can decide the size of. 
-For our model we implemented Mini Batch Gradient Descent, that takes as parameters the learning rate, which is variable through the decay rate, the Momentum (which accelerates the movement towards relevant directions) and the Nesterov (which makes the SGD perform the updates based on the previous momentum, in order to try to prevent to jump over minima due to the extreme acceleration of the descent).  
-The formula is the following:
-\textit{For every mini batch of size n, repeat until convergence}
+Optimization algorithms are used to minimise the loss function, in order to find optimum values for our learnable model’s parameter. During our neural network design and implementation we focused particularly on two main optimization techniques: Gradient Descent and Adam. \\
+\textbf{Gradient Descent}, one of the most famous and used optimization algorithms, works as follows: on each iteration, the algorithm computes the gradient of the loss function for the current weights values and updates them by an arbitrary percent (that we are able to choose by a parameter called learning rate); this procedure goes on util a stopping criterion is satisfied. 
+The traditional algorithm needs to see the whole dataset in order to perform a parameter update, and this can lead to very slow computational times, so from this original idea it has been developed the Stochastic Gradient Descent, that updates the parameter for each training example, but since this approach can lead to fluctuations and difficulties in the convergence, an additional improvement named Mini Batch Gradient Descent was created, which solves a lot of issues related to GD and SGD performing a parameter update for every batch (a subset of training examples that we can decide the size of). 
+For our model we implemented Mini Batch Gradient Descent, that takes as parameters the learning rate, which is variable through the decay rate, the Momentum (which accelerates the movement towards relevant directions) and the Nesterov (which makes the SGD perform the updates based on the previous momentum, in order to try to prevent to jump over minima due to the extreme acceleration of the descent).  \\
+The formula is the following: \\ \\
 
+\textit{For every mini batch of size n, repeat until convergence:} \\
 \begin{align*}
-\nu_{j}  \gets \eta  *  \nu_{j} - \alpha \nabla_{w} \sum_{1}^{m} L_{m}(w), \\
-w_{j} \gets  \nu_{j} + w_{j}
+\nu_{t}  \gets \gamma  *  \nu_{t-1} - \alpha \nabla_{w} L(w - \gamma\nu_{t-1}), \\
+w \gets  w - \nu_{t},
 \end{align*}
 
-Although we obtained very good result using this version of the SGD, we also decided to use another optimizer to compare the results. We chose to use Adam, a technique derived both form the idea of Momentum and another optimization algorithm called RMSProp. 
-While RMSProp tries to dampen oscillations by updating each parameter separately and choosing for each one a different learning rate computed using the exponential average of squares of gradients, Adam uses in addition the exponential average of gradients, keeping also two constants named beta1 and beta2 to control the decay rates of these two moving averages. 
-The formula is the following:
 
-\textit{For each parameter $w^{j}$}
+where $\nu_{t}$ is the Momentum update calculated at time $t$, $\gamma$ is the Momentum term, $\eta$ is the learning rate and $\nabla_{w}$ is the gradient of $L$.   \\ \\
+For our model, we chose a learning rate of 0.01, a decay rate of 0 and a Momentum term of 0.9. \\
 
-\begin{align*}\nu_{t}  = \beta_{1}  *  \nu_{t-1} - (1 - \beta_{1}) *g_{t} \\
+Although we obtained very good result using this version of the SGD, we also decided to use another optimizer to compare the results. We chose to use \textbf{Adam}, a technique derived both form the idea of Momentum and another optimization algorithm called RMSProp. \\
+While RMSProp tries to dampen oscillations by updating each parameter separately and choosing for each one a different learning rate computed using the exponential average of squares of gradients, Adam uses in addition the exponential average of gradients, keeping also two constants named $\beta_{1}$ and $\beta_{2}$ to control the decay rates of these two moving averages. \\
+The formula is the following: \\ \\
+
+
+\textit{For each parameter $w^{j}$}: \\
+\begin{align*}
+\nu_{t}  = \beta_{1}  *  \nu_{t-1} - (1 - \beta_{1}) *g_{t} \\
 s_{t} =  \beta_{2} * s_{t-1} - (1-\beta_{2}) * g_{t}^2\\
 \Delta w_{t} = -\eta \frac{\nu_{t}}{\sqrt{s_{t} + \epsilon}}* g_{t}\\
 w_{t+1} = w_{t} + \Delta w_{t},
 \end{align*}
 
-where $\eta$ is the initial learning rate, $g_{t}$ is the gradient at time t along $w^{j}$, $\nu_{t}$ is the exponential average of gradients along $w_{j}$, $s_{t}$ is the exponential average of squares of gradients along $w_{j}$, $\beta_{1},\beta_{2}$ are hyperparameters.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Models Evaluation}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{PCA and Permutation Importance}
-
-Our dataset is really interesting because it is formed by a low number of patients (800) but a really high number of features (roughly 20000). To improve computation times, specially for training times, we tried out some dimensionality reduction tecniques.
-Principal Component Analysis (PCA) ......
-Another procedure adopted is using eli5 library for computing Permutation Importance (\url{https://eli5.readthedocs.io/en/latest/blackbox/permutation_importance.html}).
-
-A feature is removed one at time only from the test part of the dataset, and compute score replacing it with random noise. This method works if noise is drawn from the same distribution as original feature values (as otherwise estimator may fail). The simplest way to get such noise is to shuffle values for a feature, i.e. use other examples’ feature values - this is how permutation importance is computed.
-This mechanism is iterated for every feature. For example, let's apply this to a tree classifier, and the result is in the following table:
+where $\eta$ is the initial learning rate, $g_{t}$ is the gradient at time t along $w^{j}$, $\nu_{t}$ is the exponential average of gradients along $w_{j}$, $s_{t}$ is the exponential average of squares of gradients along $w_{j}$ and $\beta_{1},\beta_{2}$ are hyperparameters. \\ \\
+For our model, we chose an initial learning rate of 0.01, $beta_{1}$=0.9 and $beta_{2}$=0.999 (as suggested from the Adam paper) and an epsilon value (to prevent divisions by zero) of $10^{-8}$.
 
 
-
-\begin{figure}[hbt]
-\centering
-\includegraphics[width=0.2\textwidth]{img/perm}
-\includegraphics[width=0.77\textwidth]{img/shap.png}
-\caption{On the left: permutation importance for the parameter tuned tree. It clearly shows that only a low number of genes is correlated with the prediction. On the right: using Shap library to describe how these features influence data prediction.}
-\label{fig_perm}
-\end{figure}
-
-We could imagine that only coloured genes were responsible for predictions, so we tried to train a Decision Tree Classifier keeping only those genes. This considerably reduces feature dimensionality, from $20530$ to $6$.The results are:
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=\linewidth]{img/perm_matrix}
-\caption{Confusion matrix and evaluation metrics for the tree classifier trained with only "important" genes.}
-\label{fig_perm_m}
-\end{figure}
+\section{Parameter optimization and Validation}
+Once having built a model, a developer must ensure that the model has a good generalising capacity. Often, a too fitted net fails to predict in test set: this behaviour is called overfitting.
+In the sections below, we will review some of the techniques used to avoid this problem and some characteristics of the models we considered.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Cross-Validation}
+One may desire to have a technique to evaluate the generalisation performances of the model before testing it. An idea could be to split again the training set, and using a part of it to test the performances: this procedure is called Cross-Validation.
+It works as follows: it randomly splits the training set into $k$ distinct subsets called folds, then it trains and evaluates the model $k$ times, each time picking a different fold as the test set and using the other $k-1$ for training.
+This procedure is automatically implemented in a lot of libraries inside both the methods used to train the classifiers as well as in the evaluation ones; for example, in Keras it is sufficient to enable the shuffling of data and specify the percentage of the training set that we want to use as validation in order to implement this technique. In our work we also utilised the $StratifiedKFold$ method form the $model\_selection$ library, which has the property to preserve the percentage of samples for each class present in the training set.
 
-\subsection{Metrics}
-During our analysis we used a variety of losses and metrics, for example the already explained Accuracy or the Hamming Loss, which is the fraction of labels that are incorrectly predicted.
-Talking about those metrics, we think they are not truly a good measure for nets performances in case of unbalanced classes.
-A more precise measure, and the metric we used more often during our work, is the Confusion Matrix.
-Having the true labels as rows and predictions as columns, it presents the number of right classifications on the principal diagonal, and the sum of mis-classifications off-diagonal. 
-Let's recap our results:
+\subsection{Grid Search and Random Search}
+During the process of tuning hyperparameters for each algorithm, one can see that some of them influence overfitting more than others: selecting the right parameters is a tedious job if one does it by hand, and it can become almost impossible as the number of parameters increases.
+Instead, it is possible to use for example Scikit-learn's GridSearchCV, that will calculate all the possible combinations of the hyperparameters given in input and return the best of all evaluated through cross-validation. 
+The grid search approach is fine when we are exploring relatively few combinations, but when the hyperparameter search space is large, it is often preferable to use RandomizedSearchCV instead. This class is similar to the one we have just discussed, but it evaluates random values (taken from a probability distribution) for every parameter passed.
+It is useful when we want to explore larger parts of the hyperparameter search space and also lighten the computation.
+Both functions were used in our work, giving similar results in terms of performances.
+
+
+\subsection{Architecture settings}
+In general, when we build a model, we must determine which parameters mostly influence the performances and try to tune them in a way that we obtain the best predictions. By using the techniques considered above, we obtained some optimal parameters for every model we designed. 
+
+
+\subsubsection{Decision Tree}
+
 \begin{itemize}
-\item For the optimal Decision Tree Classifier, we have and accuracy of $0.9917355371900827 $, a hamming loss of $0.008264462809917356 $ and the model was trained in $3.73$ seconds.
-The resulting confusion matrix is:
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=\linewidth]{img/matrix_tree}
-\caption{Confusion matrix for the tuned tree classifier.}
-\label{mat_tree}
-\end{figure}
-
-\item For the optimal Random Forest Classifier, we have and accuracy of $1.0 $, a hamming loss of $0.0$ and the model was trained in $2.37$ seconds. The resulting confusion matrix is:
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=\linewidth]{img/matrix_forest}
-\caption{Confusion matrix for the tuned random forest.}
-\label{mat_forest}
-\end{figure}
-
-\item For the optimal Deep Network with label encoding and CrossEntropyLoss, the model was trained in $21.72$ seconds ending with a CrossEntropyLoss of $0.0000006407485102499777$. The resulting confusion matrix is:
-
-
-\item For the optimal Deep Network with One-hot Encoding and BCEWithLogitsLoss, the model was trained in $21.21$ seconds ending with a BCEWithLogitsLoss of $0.0054287840612232685$. The resulting confusion matrix is:
-
-
-\begin{figure}[hbt]
-\centering
-\advance\leftskip-4cm
-\advance\rightskip-4cm
-\includegraphics[width=0.7\textwidth]{img/matrix_py_enc}
-\includegraphics[width=0.7\textwidth]{img/matrix_py_hot}
-\caption{On the left: Confusion matrix for the Pytorch Deep Neural Network, with label encoding. On the right: Confusion matrix for the Pytorch Deep Neural Network, with one-hot encoded labels.}
-\label{fig_torch}
-\end{figure}
-
-
+\item Criterion for the splitting = gini
+\item Maximum depth for a tree = 5
+\item Maximum number of leaf nodes =7
 \end{itemize}
 
 
+\subsubsection{Random Forest}
+
+\begin{itemize}
+\item Criterion for the splitting = entropy. \\ (Some of them are inherited from Trees)
+\item Number of trees in the forest = 60
+\item Maximum number of leaf nodes = 50
+\item Bootstrap samples are used when building trees. \\ (Otherwise, the whole datset is used to build each tree).
+\end{itemize}
+
+\subsubsection{Support Vector Machine}
+
+\begin{itemize}
+\item C = 10;
+\item Kernel= linear
+\end{itemize}
+                            
+
+\section{Models Evaluation}
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Feature Selection and Dimensionality Reduction}
+Our dataset is really interesting because while it is formed by a low number of patients (800) it has a really high number of features (more than 20000). To improve computation times, especially for training times, we tried out some dimensionality reduction techniques. Dimensionality reduction assumes an intrinsic dimension of the data significantly lower than the data space and tries to delete all the redundant or less useful information in order to obtain a vector with a lower number of components that maintain a considerably amount of information. In our work we used the Principal Component Analysis (PCA in short) and the Permutation Importance. \\
+The idea of the \textbf{Principal Component Analysis} algorithm is to find among all the possible directions in the space of data the one that maximise the variance once that the data are projected in that direction. We implemented  PCA using Scikit-learn PCA method from the decomposition library, setting the number of components to 700: the resulting features still retained a high percentage of information (98\%), but with a remarkable compression rate that reduced our data to slightly less than 4\%. \\
+Another procedure was to adopt the $eli5$ library for computing \textbf{Permutation Importance}, that works as follows:
+% (\url{https://eli5.readthedocs.io/en/latest/blackbox/permutation_importance.html}).
+one at a time a feature is removed from the test part of the dataset and replaced it with random noise; then an evaluation score (depending on the model we developed) is computed. This method works if noise is drawn from the same distribution as the original feature values (as otherwise the estimator may fail) and the simplest way to get such noise is to shuffle values for a feature (i.e. use other examples' feature values). \\
+We applied the permutation importance method to our tree classifier and got the results shown in Figure \ref{fig_perm}. \\
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.2\textwidth]{img/perm}
+\includegraphics[width=0.77\textwidth]{img/shap.png}
+\caption{On the left: permutation importance for the parameter tuned tree; it clearly shows that only a low number of genes is correlated with the prediction. On the right: a visual description using Shape library of how these features influence the data prediction.}
+\label{fig_perm}
+\end{figure}
+
+
+From these results we assumed that only highlighted genes were responsible for the predictions, so we tried to train a Decision Tree Classifier keeping only those, reducing the features dimensionality from 20530 to 6. \\
+The results are the shown in Figure \ref{fig_perm_m}.
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=120mm]{img/perm_matrix}
+\caption{Confusion matrix and evaluation metrics for the tree classifier trained with only relevant genes.}
+\label{fig_perm_m}
+\end{figure}
+
+\newpage
+\subsection{Metrics}
+During our analysis we used a variety of losses and metrics:
+
+\begin{itemize}
+\item Accuracy: in multi-class problems, this is a discrete measure of predictions, in the sense that results scores only when predition is exact.
+% (\url{https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics});
+\item Hamming Loss: the fraction of labels that are incorrectly predicted.
+\end{itemize}
+
+Talking about these metrics, we believe that they are not a truly good measures for the evaluation of the performances of models in the case of unbalanced classes. A more precise measure, and the metric we used the most during our work, is the Confusion Matrix. Having the true labels as rows and predictions as columns, the confusion matrix presents the number of right classifications on the principal diagonal and the sum of misclassifications off-diagonal. In the following section we will present our results.
+
+\subsubsection{Models results}
+
+\begin{itemize}
+\item For the optimal Decision Tree Classifier, we have an Accuracy of $0.99174$ and a Hamming Loss of $0.00826$. The model was trained in $3.73$ seconds. 
+The resulting confusion matrix is shown in Figure \ref{fig_treeandforest}. 
+
+\item For the optimal Random Forest Classifier, we have and Accuracy of $1.0$ and a Hamming Loss of $0.0$. The model was trained in $2.37$ seconds. 
+The resulting confusion matrix is shown in Figure \ref{fig_treeandforest}. 
+
+\item For the optimal Support Vector Machine, we have an Accuracy of $0.99705$. The model was trained in $0.1$ seconds.
+% The resulting confusion matrix is shown in Figure \ref{fig_svm}. 
+
+\item For the optimal Keras Deep Neural Network with One-Hot Encoding and CrossEntropyLoss, the model was trained in $25.52$ seconds, ending with a loss of the test set of $5,70688e-06$ and an Accuracy on the test set of $1.0$.
+% The resulting confusion matrix is shown in Figure \ref{fig_keras}. 
+
+\item For the optimal PyTorch Deep Neural Network with Label Encoding and CrossEntropyLoss, the model was trained in $21.72$ seconds ending with a loss of $6,407e-07$. 
+The resulting confusion matrix is shown in Figure \ref{fig_torch}.
+
+\item For the optimal Pytorch Deep Neural Network with One-Hot Encoding and BCEWithLogitsLoss, the model was trained in $21.21$ seconds ending with a loss of $0,00543$. 
+The resulting confusion matrix is shown in Figure \ref{fig_torch}.
+\end{itemize}
+
+
+\begin{figure}[h!]
+\centering
+\advance\leftskip-4cm
+\advance\rightskip-4cm
+\includegraphics[width=0.50\textwidth]{img/matrix_tree}
+\includegraphics[width=0.50\textwidth]{img/matrix_forest}
+\caption{On the left: Confusion matrix for the Pytorch Deep Neural Network with Label Encoding. On the right: Confusion matrix for the Pytorch Deep Neural Network with One-Hot encoded labels.}
+\label{fig_treeandforest}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\advance\leftskip-4cm
+\advance\rightskip-4cm
+\includegraphics[width=0.50\textwidth]{img/matrix_py_enc}
+\includegraphics[width=0.50\textwidth]{img/matrix_py_hot}
+\caption{On the left: Confusion matrix for the Pytorch Deep Neural Network with Label Encoding. On the right: Confusion matrix for the Pytorch Deep Neural Network with One-Hot Encoding.}
+\label{fig_torch}
+\end{figure}
+
+\newpage
 
 \section{Conclusions and Outlook}
 
 
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \bibliography{Bibliography}
