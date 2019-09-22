@@ -2,22 +2,28 @@
 \BOOKMARK [1][-]{section.2}{Dataset Manipulation}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{Preliminary manipulation}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{Label handling}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Train and Test Set}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{Class Weighting}{section.2}% 6
-\BOOKMARK [1][-]{section.3}{Architectures}{}% 7
-\BOOKMARK [2][-]{subsection.3.1}{Support Vector Machines \(SVM\)}{section.3}% 8
-\BOOKMARK [2][-]{subsection.3.2}{Decision Tree Classifier and Random Forests}{section.3}% 9
-\BOOKMARK [2][-]{subsection.3.3}{Deep Learning}{section.3}% 10
-\BOOKMARK [3][-]{subsubsection.3.3.1}{PyTorch}{subsection.3.3}% 11
-\BOOKMARK [3][-]{subsubsection.3.3.2}{Keras}{subsection.3.3}% 12
-\BOOKMARK [1][-]{section.4}{Parameter optimization and Validation}{}% 13
-\BOOKMARK [2][-]{subsection.4.1}{Cross-Validation}{section.4}% 14
-\BOOKMARK [2][-]{subsection.4.2}{Grid Search CV \(and Random Search\)}{section.4}% 15
-\BOOKMARK [2][-]{subsection.4.3}{Architecture setting}{section.4}% 16
-\BOOKMARK [3][-]{subsubsection.4.3.1}{Parameters}{subsection.4.3}% 17
-\BOOKMARK [3][-]{subsubsection.4.3.2}{Losses}{subsection.4.3}% 18
-\BOOKMARK [3][-]{subsubsection.4.3.3}{Optimizers}{subsection.4.3}% 19
-\BOOKMARK [1][-]{section.5}{Models Evaluation}{}% 20
-\BOOKMARK [2][-]{subsection.5.1}{PCA and Permutation Importance}{section.5}% 21
-\BOOKMARK [2][-]{subsection.5.2}{Metrics}{section.5}% 22
-\BOOKMARK [1][-]{section.6}{Conclusions and Outlook}{}% 23
+\BOOKMARK [2][-]{subsection.2.3}{Normalization}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{Train and Test Set}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{Class Weighting}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{Models}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{Decision Tree Classifier and Random Forests}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.2}{Support Vector Machines \(SVM\)}{section.3}% 10
+\BOOKMARK [2][-]{subsection.3.3}{Deep Learning}{section.3}% 11
+\BOOKMARK [3][-]{subsubsection.3.3.1}{Keras}{subsection.3.3}% 12
+\BOOKMARK [3][-]{subsubsection.3.3.2}{PyTorch}{subsection.3.3}% 13
+\BOOKMARK [2][-]{subsection.3.4}{Neural network architecture, losses and optimizers}{section.3}% 14
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Architecture}{subsection.3.4}% 15
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Losses}{subsection.3.4}% 16
+\BOOKMARK [3][-]{subsubsection.3.4.3}{Optimizers}{subsection.3.4}% 17
+\BOOKMARK [1][-]{section.4}{Parameter optimization and Validation}{}% 18
+\BOOKMARK [2][-]{subsection.4.1}{Cross-Validation}{section.4}% 19
+\BOOKMARK [2][-]{subsection.4.2}{Grid Search and Random Search}{section.4}% 20
+\BOOKMARK [2][-]{subsection.4.3}{Architecture settings}{section.4}% 21
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Decision Tree}{subsection.4.3}% 22
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Random Forest}{subsection.4.3}% 23
+\BOOKMARK [3][-]{subsubsection.4.3.3}{Support Vector Machine}{subsection.4.3}% 24
+\BOOKMARK [1][-]{section.5}{Models Evaluation}{}% 25
+\BOOKMARK [2][-]{subsection.5.1}{Feature Selection and Dimensionality Reduction}{section.5}% 26
+\BOOKMARK [2][-]{subsection.5.2}{Metrics}{section.5}% 27
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Models results}{subsection.5.2}% 28
+\BOOKMARK [1][-]{section.6}{Conclusions and Outlook}{}% 29
