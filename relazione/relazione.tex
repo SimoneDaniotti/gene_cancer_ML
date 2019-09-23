@@ -48,7 +48,7 @@ Many recent studies focused their attention to the relationship between gene exp
 
 The dataset for this work is taken from UCI Machine Learning Repo (available at \url{https://archive.ics.uci.edu/ml/datasets/gene+expression+cancer+RNA-Seq}) \cite{Dua:2019}, and it is part of the RNA-Seq (HiSeq, a tool for measuring gene expression levels) PANCAN dataset. The dataset is a collection of gene expression levels of patients having different types of tumor: BRCA (breast), KIRC (kidney), COAD (colon), LUAD (lung) and PRAD (prostate).
 These data represent the quantity of gene information used in the synthesis of a functional gene product. 
-% For further information, we refer to \cite{weinstein2013cancer}.
+For further information, we refer to \cite{weinstein2013cancer}.
 
 
 \section{Dataset Manipulation}
@@ -75,12 +75,12 @@ For training the models and evaluate them, we split the dataset into training an
 
 \subsection{Class Weighting}
 Since our dataset is unbalanced, we chose to handle this problem using $class\_weight$ parameter (which is present in almost every classifier). This parameter can be defined as a dictionary that maps each class in the dataset with its respective weight; weights can be computed using Scikit-learn method $compute\_class\_weight$ in the $class\_weight$ library, which assigns greater values to the less represented classes. Through this parameter, the classifier is aware of the fact that some classes are more represented than others and gives the examples different importance during the training step.
-%(https://scikit-learn.org/stable/modules/generated/sklearn.utils.class_weight.compute_class_weight.html)
+(\url{https://scikit-learn.org/stable/modules/generated/sklearn.utils.class_weight.compute_class_weight.html})
 
 \newpage
 \section{Models}
-%There are lots of books reviewing these architectures and concepts. Here we refer to \cite{geron2017hands} , \cite{bishop2006pattern} \cite{hertz1991introduction}.
 We thought it could be a useful idea to approach our problem with relatively simple and more mathematically defined models, such as the Decision Trees, Random Forests and Support Vector Machines, and after their evaluation deepen in more complex ones, such as the Neural Networks. 
+There are lots of books reviewing these architectures and concepts. Here we refer to \cite{geron2017hands} , \cite{bishop2006pattern} \cite{hertz1991introduction}.
 
 
 \subsection{Decision Tree Classifier and Random Forests}
@@ -265,7 +265,7 @@ In general, when we build a model, we must determine which parameters mostly inf
 Our dataset is really interesting because while it is formed by a low number of patients (800) it has a really high number of features (more than 20000). To improve computation times, especially for training times, we tried out some dimensionality reduction techniques. Dimensionality reduction assumes an intrinsic dimension of the data significantly lower than the data space and tries to delete all the redundant or less useful information in order to obtain a vector with a lower number of components that maintain a considerably amount of information. In our work we used the Principal Component Analysis (PCA in short) and the Permutation Importance. \\ \\
 The idea of the \textbf{Principal Component Analysis} algorithm is to find among all the possible directions in the space of data the one that maximise the variance once that the data are projected in that direction. We implemented  PCA using Scikit-learn PCA method from the decomposition library, setting the number of components to 700: the resulting features still retained a high percentage of information (98\%), but with a remarkable compression rate that reduced our data to slightly less than 4\%. \\ \\
 Another procedure was to adopt the $eli5$ library for computing \textbf{Permutation Importance}, that works as follows:
-% (\url{https://eli5.readthedocs.io/en/latest/blackbox/permutation_importance.html}).
+(\url{https://eli5.readthedocs.io/en/latest/blackbox/permutation_importance.html}).
 one at a time a feature is removed from the test part of the dataset and replaced it with random noise; then an evaluation score (depending on the model we developed) is computed. This method works if noise is drawn from the same distribution as the original feature values (as otherwise the estimator may fail) and the simplest way to get such noise is to shuffle values for a feature (i.e. use other examples' feature values). \\
 We applied the permutation importance method to our tree classifier and got the results shown in Figure \ref{fig_perm}. \\
 
@@ -296,7 +296,7 @@ During our analysis we used a variety of losses and metrics:
 
 \begin{itemize}
 \item Accuracy: in multi-class problems, this is a discrete measure of predictions, in the sense that results scores only when predition is exact.
-% (\url{https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics});
+(\url{https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics});
 \item Hamming Loss: the fraction of labels that are incorrectly predicted.
 \end{itemize}
 
@@ -337,7 +337,7 @@ The resulting confusion matrix is shown in Figure \ref{fig_svm}.
 \advance\leftskip-4cm
 \advance\rightskip-4cm
 \includegraphics[width=0.60\textwidth]{img/keras.png}
-\includegraphics[width=0.60\textwidth]{img/pytorch.png} %sostituire con keras
+\includegraphics[width=0.60\textwidth]{img/pytorch.png} 
 \caption{On the left the confusion matrix for the Keras Deep Neural Network with One-Hot encoded labels; on the left the Pytorch one (results for Label and One-Hot Encoding are the same).}
 \label{fig_deep}
 \end{figure}
