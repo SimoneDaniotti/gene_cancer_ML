@@ -6,12 +6,10 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # loading dataset and put it into variables (labels One Hot Encoded)
-data = r'data.csv'
-labels = r'labels.csv'
-X = pd.read_csv(data)
+X = pd.read_csv("../data.csv")
 X = X.drop(X.columns[0], axis=1)
 x = pd.DataFrame(X).to_numpy()  # complete array of examples
-Y = pd.read_csv(labels)
+Y = pd.read_csv("../labels.csv")
 Y = Y.drop(Y.columns[0], axis=1)
 # one hot encoding
 le = preprocessing.LabelEncoder()
