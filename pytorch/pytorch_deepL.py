@@ -14,8 +14,8 @@ from torch.utils.data import TensorDataset, DataLoader
 
 # load the dataset and drop useless columns
 print('Dataset loading...')
-x = pd.read_csv("data.csv")
-y = pd.read_csv("labels.csv")
+x = pd.read_csv("../data.csv")
+y = pd.read_csv("../labels.csv")
 # drop the first column which only contains strings
 x = x.drop(x.columns[0], axis=1)
 # drop first column, is only index
