@@ -6,8 +6,8 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 
 # loading dataset and put it into variables (labels One Hot Encoded)
-data = r'dataset.csv'
-labels = r'lab.csv'
+data = r'data.csv'
+labels = r'labels.csv'
 X = pd.read_csv(data)
 X = X.drop(X.columns[0], axis=1)
 x = pd.DataFrame(X).to_numpy()  # complete array of examples
