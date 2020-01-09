@@ -1,6 +1,6 @@
 # Bioinformatics Project: Gene Expression Related to Cancer  
 
-Bioinformatics multi-class classification machine learning project developed by [Castelli Riccardo](https://github.com/castelli1024) and Daniotti Simone for the 2018/2019 Bioinformatics course taught by Professor Valentini (UNIMI). 
+Bioinformatics multi-class classification machine learning project developed by [Castelli Riccardo](https://github.com/castelli1024) and [Daniotti Simone](https://github.com/McDaniots) for the 2018/2019 Bioinformatics course taught by Professor Valentini (UNIMI). 
 
 ## Dataset
 
